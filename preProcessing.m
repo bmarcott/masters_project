@@ -8,13 +8,18 @@ image = imgs(:,:,1);
 
 level = graythresh(image);
 
-subplot(1,2,1)
+subplot(1,3,1)
 imshow(image);
-title('Before thresholding');
+title('Before Otsu Thresholding');
 
-image(image < level) = 1;
-image(image ~= 1) = 0;
+image(image < level) = 0;
+image(image ~= 0) = 1;
 
-subplot(1,2,2)
+subplot(1,3,2)
 imshow(image);
-title('After thresholding');
+title('After Thresholding');
+
+image = bwmorph(image,'skel',Inf);
+subplot(1,3,3)
+imshow(image);
+title('After Thinning/Skeletonization');
