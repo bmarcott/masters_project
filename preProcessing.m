@@ -1,13 +1,20 @@
+trainingImagePath = 'C:\Users\Nicholas\Visual Modelling\train-images.idx3-ubyte';
+trainingLabelPath = 'C:\Users\Nicholas\Visual Modelling\train-labels.idx1-ubyte';
+numToTrain = 20;
+offset = 0;
 
-imageDir = 'C:\Users\Nicholas\Machine Learning\project 2\face_data\newface16\';
-imageFiles = dir([imageDir '*.bmp']);     
+[imgs, labels] = readMNIST(trainingImagePath, trainingLabelPath, numToTrain, offset);
+image = imgs(:,:,1);
 
-image = imread([imageDir, imageFiles(1).name]);
-level = graythresh(image)*255;
+level = graythresh(image);
 
+subplot(1,2,1)
 imshow(image);
-image(image < level) = 0;
-image(image ~= 0) = 255;
+title('Before thresholding');
 
-figure;
+image(image < level) = 1;
+image(image ~= 1) = 0;
+
+subplot(1,2,2)
 imshow(image);
+title('After thresholding');
