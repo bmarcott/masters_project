@@ -1,4 +1,6 @@
 function [A, t] = min_E_def(c, c_home)
+%MIN_E_DEF Implements the M-step Part 2. Minimize E with respect to the
+%affine transformation parameters (A, t).
 %INPUT
 %  array c: [2*n x 1]
 %    Array of spline control points. In image-frame.
