@@ -19,20 +19,31 @@ EPS = 1e-8;
 
 Bs = []; % Bs(b,:,:) -> 2x2*n matrix mapping ctrl pts to bead locs
 
+anneal_sched = [...
+    %[int NB_BEADS, int MAX_INNER_ITERS, float VAR]
+    [8, 5, 0.04]; ...
+    [15, 3, 0.02]; ...
+    [15, 3, 0.01]; ...
+    [15, 35, 0.008]; ...
+    [30, 35, 0.0025]; ...
+    [60, 45, 0.0006]; ...
+    [60, 2, 0.0006]; ...
+    ];
+
 for iter_var=1:nb_var_steps
-    % TODO: Set B, var_b according to schedule
-    B = 8;
-    var_b = 4;
+    B = anneal_sched(iter_var, 1);
+    max_inner_iters = anneal_sched(iter_var, 2);
+    var_b = anneal_sched(iter_var, 3);
+    sigma_b = eye(2) * var_b; % covar. matrix for bead gaussians
     E_tot = E_def() + E_fit();
-    for iter_inner=1:max_iters
+    for iter_inner=1:max_inner_iters
         %% E-step
         % Evaluate responsiblity of each bead for each pixel
         rs = compute_rs(I, bs, var_b, pi_n);
         %% M-step (part 1)
         % Update control point locations z
         % (1) Compute M_def, b_def
-        % Compute M_def
-        
+        [M_def, b_def] = compute_Mb_def(sigma_b, A, t);
         % (2) Compute M_fit, b_fit
         % Compute M_fit (Eq. B.3)
         M_fit = zeros([2*nb_c, 2*nb_c]);
@@ -65,9 +76,16 @@ for iter_var=1:nb_var_steps
             end
             b_fit(i) = t1*t2;
         end
+        % Solve linear system to update bead locations: Mx = b
+        M = (M_def + M_fit);
+        b = (b_def + b_fit);
+        x_new = (M\b); % arranged as stacked (x,y) coords
+        %x_new = reshape(x_new, [2, 3])'; % [N x 2]
         %% M-step (part 2)
-        % Update affine transformation T
-        
+        % Update affine trans. A,t by minimizing E_def while keeping x_new fixed
+        [A, t] = min_E_def(c, c_home);
+
+        %% Check stopping criterion
         E_tot_p = E_def() + E_fit();
         delt = E_tot_p - E_tot;
         if abs(delt) <= EPS
@@ -105,4 +123,20 @@ for b=1:B
         end
     end
 end
+end
+
+function [M_def, b_def] = compute_Mb_def(sigma_0, A, t)
+%INPUT
+%  matrix sigma_0: [2 x 2]
+%    Covariance matrix of the bead gaussians.
+%  matrix A: [2 x 2]
+%    The affine transformation mapping object frame to image frame.
+%  array t: [2 x 1]
+%    The translation component of the object->image mapping. [tx, ty].
+%OUTPUT
+%  matrix M_def: [2 x 2]
+%  array b_def: [2 x 1]
+sigma_i = inv(A)'*inv(sigma_0)*inv(A);
+M_def = inv(sigma_i);
+b_def = inv(sigma_i) * (A*h_0 + t);
 end
