@@ -1,23 +1,22 @@
-function [x, T, E_def, E_fit] = fit_model(I, c)
+function [xs_est, A, t, E_def, E_fit] = fit_model(I, c)
 %FIT_MODEL Fits cubic b-spline to image I.
 %INPUT
 %  matrix I: [h x w]
 %  array c: [2 x n]
 %    Vector of cubic b-spline control points ('home' locations).
 %OUTPUT
-%  matrix x:
-%  matrix T:
+%  matrix xs_est:
+%  matrix A, t:
 %    Final affine transformation.
+%  float E_def, E_fit:
+%    The energy terms.
 nb_c = size(c, 2); % Nb. control points
-z = zeros([2*nb_c+6,1]); % Initialize z (spline ctrl pts + affine params)
 
 % I.e. N_0 is relative weight E_def vs E_fit
 N_0 = 160; % "Standard" nb. of pixels. [See pg. 31 of thesis]
-N_B = sum(sum(I));  % Nb. of inked pixels
+N_I = sum(sum(I));  % Nb. of inked pixels (assumes binary image I)
 pi_n = 0.3; % mixing coef. btwn uniform-noise and gaussian-mixture
 EPS = 1e-8;
-
-Bs = []; % Bs(b,:,:) -> 2x2*n matrix mapping ctrl pts to bead locs
 
 anneal_sched = [...
     %[int NB_BEADS, int MAX_INNER_ITERS, float VAR]
@@ -30,33 +29,51 @@ anneal_sched = [...
     [60, 2, 0.0006]; ...
     ];
 
+%% Initialize parameters
+% Affine trans (A,t) maps object frame to image frame
+A = eye(2); % TODO: Actually init. this trans.
+t = [0; 0];
+% xs_est [2 x N] is ctrl-pt estimates (in image frame)
+xs_est = A*c + t; 
+
+%% Initialize output vals
+E_def = nan; E_fit = nan;
+
 for iter_var=1:size(anneal_sched, 1)
-    B = anneal_sched(iter_var, 1);
+    %% Pull out meta-params from annealing schedule
+    N_B = anneal_sched(iter_var, 1); % Nb. beads
     max_inner_iters = anneal_sched(iter_var, 2);
     var_b = anneal_sched(iter_var, 3);
     sigma_b = eye(2) * var_b; % covar. matrix for bead gaussians
-    E_tot = E_def() + E_fit();
+    E_def = compute_E_def();
+    E_fit = compute_E_fit();
+    E_tot = E_def + E_fit;
+    %% Perform alternating minimization (via EM steps)
     for iter_inner=1:max_inner_iters
+        [bs, Bs] = compute_bead_locs(xs_est', N_B); % in img frame
         %% E-step
         % Evaluate responsiblity of each bead for each pixel
         rs = compute_rs(I, bs, var_b, pi_n);
         %% M-step (part 1)
-        % Update control point locations z
+        % Update control point locations xs_est
         % (1) Compute M_def, b_def
         [M_def, b_def] = compute_Mb_def(sigma_b, A, t);
         % (2) Compute M_fit, b_fit
-        [M_fit, b_fit] = compute_Mb_fit(nb_c, B, N_0, N_B, rs, Bs);
+        [M_fit, b_fit] = compute_Mb_fit(nb_c, N_B, N_0, N_I, rs, Bs);
         % Solve linear system to update bead locations: Mx = b
         M = (M_def + M_fit);
         b = (b_def + b_fit);
         c_new = (M\b); % stacked (x,y) coords. In image coords.
-        %x_new = reshape(x_new, [2, 3])'; % [N x 2]
+        xs_est = reshape(c_new, [N, 2])';
+        fprintf('TODO: Check xs_est is right!\n'); keyboard;
         %% M-step (part 2)
         % Update affine trans. A,t by minimizing E_def while keeping x_new fixed
         [A, t] = min_E_def(c_new, c_home);
 
         %% Check stopping criterion
-        E_tot_p = E_def() + E_fit();
+        E_def = compute_E_def(xs_est, c_home, A, t);
+        E_fit = compute_E_fit();
+        E_tot_p = E_def + E_fit;
         delt = E_tot_p - E_tot;
         if abs(delt) <= EPS
             break % Converged
@@ -70,7 +87,7 @@ function rs = compute_rs(I, bs, var_b, pi_n)
 %INPUT
 %  matrix I: [h x w]
 %  matrix bs:
-%    Stores the bead locations: bs(b,:) -> [x,y]
+%    Stores the bead locations: bs(b,:) -> [x,y]. image-frame.
 %  float var_b:
 %    Variance of the beads.
 %  float pi_n:%

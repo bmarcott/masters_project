@@ -8,15 +8,15 @@ function [A, t] = min_E_def(c, c_home)
 %    Array of 'home' spline control point locations. In object-frame.
 %OUTPUT
 %  matrix A: [2 x 2]
-%    2x2 matrix of affine trans. Maps image frame to object frame.
+%    2x2 matrix of affine trans. Maps object frame to image frame.
 %  array t: [2 x 1]
-%    Translation comp. of affine trans. Maps img frame -> obj frame.
+%    Translation comp. of affine trans.
 n = length(c) / 2;
 c1 = reshape(c, [2, n]);
 c2 = reshape(c_home, [2, n]);
 cvx_begin
 variable A(2, 2)
 variable t(2, 1)
-minimize( sum(sum(((A*c1+repmat(t,[1,n])) - c2).^2, 1)) )
+minimize( compute_E_def(c1, c2, A, t) );
 cvx_end
 end
