@@ -14,7 +14,7 @@ function [A, t] = min_E_def(c, c_home)
 n = length(c) / 2;
 c1 = reshape(c, [2, n]);
 c2 = reshape(c_home, [2, n]);
-cvx_begin
+cvx_begin quiet
 variable A(2, 2)
 variable t(2, 1)
 minimize( compute_E_def(c1, c2, A, t) );
