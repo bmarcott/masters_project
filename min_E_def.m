@@ -17,6 +17,6 @@ c2 = reshape(c_home, [2, n]);
 cvx_begin
 variable A(2, 2)
 variable t(2, 1)
-minimize( sum(sum((A*c1 - c2).^2, 1)) )
+minimize( sum(sum(((A*c1+repmat(t,[1,n])) - c2).^2, 1)) )
 cvx_end
 end
