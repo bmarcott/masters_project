@@ -2,19 +2,19 @@ function [x, T, E_def, E_fit] = fit_model(I, c)
 %FIT_MODEL Fits cubic b-spline to image I.
 %INPUT
 %  matrix I: [h x w]
-%  array c:
+%  array c: [2 x n]
 %    Vector of cubic b-spline control points ('home' locations).
 %OUTPUT
 %  matrix x:
 %  matrix T:
 %    Final affine transformation.
-nb_c = size(c, 1); % Nb. control points
+nb_c = size(c, 2); % Nb. control points
 z = zeros([2*nb_c+6,1]); % Initialize z (spline ctrl pts + affine params)
 
 % I.e. N_0 is relative weight E_def vs E_fit
 N_0 = 160; % "Standard" nb. of pixels. [See pg. 31 of thesis]
+N_B = sum(sum(I));  % Nb. of inked pixels
 pi_n = 0.3; % mixing coef. btwn uniform-noise and gaussian-mixture
-nb_var_steps = 30; % nb. variance annealing steps
 EPS = 1e-8;
 
 Bs = []; % Bs(b,:,:) -> 2x2*n matrix mapping ctrl pts to bead locs
@@ -30,7 +30,7 @@ anneal_sched = [...
     [60, 2, 0.0006]; ...
     ];
 
-for iter_var=1:nb_var_steps
+for iter_var=1:size(anneal_sched, 1)
     B = anneal_sched(iter_var, 1);
     max_inner_iters = anneal_sched(iter_var, 2);
     var_b = anneal_sched(iter_var, 3);
@@ -45,45 +45,15 @@ for iter_var=1:nb_var_steps
         % (1) Compute M_def, b_def
         [M_def, b_def] = compute_Mb_def(sigma_b, A, t);
         % (2) Compute M_fit, b_fit
-        % Compute M_fit (Eq. B.3)
-        M_fit = zeros([2*nb_c, 2*nb_c]);
-        t1 = (N_0/((var_b^2)*B));        
-        for i=1:size(M_fit,1)
-            for j=1:size(M_fit,2)
-                t2 = 0.0;
-                for g=1:B
-                    t3 = sum(sum(squeeze(rs(g,:,:))));
-                    t4 = Bs(g,1,i)*Bs(g,1,j) + Bs(g,2,i)*Bs(g,2,j);
-                    t2 = t2 + (t3*t4);
-                end
-                M_fit(i,j) = t1*t2;
-            end
-        end
-        % Compute b_fit (Eq. B.4)
-        b_fit = zeros([2*nb_c, 1]);
-        t1 = (N_0/((var_b^2)*B));
-        for i=1:size(b_fit,1)
-            t2 = 0.0;
-            for g=1:B
-                for ii=1:size(I, 1)
-                    for jj=1:size(I, 2)
-                        if ~I(ii,jj)
-                            continue
-                        end
-                        t2 = t2 + (rs(g,ii,jj)*(Bs(g,1,i)*jj + Bs(g,2,i)*ii));
-                    end
-                end
-            end
-            b_fit(i) = t1*t2;
-        end
+        [M_fit, b_fit] = compute_Mb_fit(nb_c, B, N_0, N_B, rs, Bs);
         % Solve linear system to update bead locations: Mx = b
         M = (M_def + M_fit);
         b = (b_def + b_fit);
-        x_new = (M\b); % arranged as stacked (x,y) coords
+        c_new = (M\b); % stacked (x,y) coords. In image coords.
         %x_new = reshape(x_new, [2, 3])'; % [N x 2]
         %% M-step (part 2)
         % Update affine trans. A,t by minimizing E_def while keeping x_new fixed
-        [A, t] = min_E_def(c, c_home);
+        [A, t] = min_E_def(c_new, c_home);
 
         %% Check stopping criterion
         E_tot_p = E_def() + E_fit();
@@ -139,4 +109,52 @@ function [M_def, b_def] = compute_Mb_def(sigma_0, A, t)
 sigma_i = inv(A)'*inv(sigma_0)*inv(A);
 M_def = inv(sigma_i);
 b_def = inv(sigma_i) * (A*h_0 + t);
+end
+
+function [M_fit, b_fit] = compute_Mb_fit(nb_c, B, N_0, N_B, rs, Bs)
+%INPUT
+%  int nb_c:
+%    Nb. of control points.
+%  int B:
+%    Nb. of beads.
+%  float N_0, N_B:
+%    (N_0/N_B) determines relative importance of inked pixels.
+%  matrix rs:
+%    Contains the responsibilities:
+%      rs(bead,i,j) -> Resp. of bead at location (i,j).
+%  matrix Bs:
+%    Contains the Bg [2 x 2*n] matrices for each bead:
+%      Bs(bead,:,:) -> [2 x 2n] matrix for bead
+%  
+% Compute M_fit (Eq. B.3)
+M_fit = zeros([2*nb_c, 2*nb_c]);
+t1 = (N_0/((var_b^2)*B));        
+for i=1:size(M_fit,1)
+    for j=1:size(M_fit,2)
+        t2 = 0.0;
+        for g=1:B
+            t3 = sum(sum(squeeze(rs(g,:,:))));
+            t4 = Bs(g,1,i)*Bs(g,1,j) + Bs(g,2,i)*Bs(g,2,j);
+            t2 = t2 + (t3*t4);
+        end
+        M_fit(i,j) = t1*t2;
+    end
+end
+% Compute b_fit (Eq. B.4)
+b_fit = zeros([2*nb_c, 1]);
+t1 = (N_0/((var_b^2)*B));
+for i=1:size(b_fit,1)
+    t2 = 0.0;
+    for g=1:B
+        for ii=1:size(I, 1)
+            for jj=1:size(I, 2)
+                if ~I(ii,jj)
+                    continue
+                end
+                t2 = t2 + (rs(g,ii,jj)*(Bs(g,1,i)*jj + Bs(g,2,i)*ii));
+            end
+        end
+    end
+    b_fit(i) = t1*t2;
+end
 end
