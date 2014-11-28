@@ -13,7 +13,6 @@ function E_fit = compute_E_fit(rs, norm_terms, N_0, N_B)
 %   E_fit = -(N_0/N_B) * sum(log(f(y_i)) over inked pixels)
 % where f(y_i) = (pi_n)/A + (1-pi_n)/B * sum(f_i(y) over bead i)
 % and f_i(y) is Norm(mu_i - y, sigma_i)
-t1 = sum(sum(log(norm_terms)));
+t1 = sum(sum(log(norm_terms(norm_terms > 0.0))));
 E_fit = -(N_0/N_B) * t1;
-E_fit = 0.0; % DEBUG: This is always outputting Inf
 end

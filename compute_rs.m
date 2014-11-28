@@ -23,10 +23,10 @@ for i=1:size(I,1)
             continue
         end
         %% Compute normalization term
-        norm_term = 0.0;
+        norm_term = (pi_n*B)/((1-pi_n)*A);
         for b=1:B
             mu_b = bs(:,b); % col vec
-            norm_term = norm_term + mvnpdf([j;i],mu_b,var_b*eye(2)) + (pi_n*B)/((1-pi_n)*A);
+            norm_term = norm_term + mvnpdf([j;i],mu_b,var_b*eye(2));
         end
         norm_terms(i,j) = norm_term;            
         %% Compute rs_b(i,j)

@@ -1,4 +1,4 @@
-function [xs_est, A, t, E_def, E_fit] = fit_model(I, cs_home)
+function [xs_est, A, t, E_def, E_fit, intermeds] = fit_model(I, cs_home)
 %FIT_MODEL Fits cubic b-spline to image I.
 %INPUT
 %  matrix I: [h x w]
@@ -10,6 +10,9 @@ function [xs_est, A, t, E_def, E_fit] = fit_model(I, cs_home)
 %    Final affine transformation.
 %  float E_def, E_fit:
 %    The energy terms.
+%  cell intermeds: 
+%    Outputs the intermediate states:
+%      intermeds{i} -> {xs_est, A, t, E_def, E_fit}
 nb_c = size(cs_home, 2); % Nb. control points
 
 % I.e. N_0 is relative weight E_def vs E_fit
@@ -29,7 +32,7 @@ anneal_sched = [...
     [60, 2, 0.0006]; ...
     ];
 
-MAX_ITERS = 1;
+MAX_ITERS = 30;
 
 %% Initialize parameters
 % Affine trans (A,t) maps object frame to image frame
@@ -39,6 +42,9 @@ xs_est = A*cs_home + repmat(t, [1, nb_c]);
 %% Initialize output vals
 E_def = nan; E_fit = nan;
 E_tots = [];
+intermeds = {{xs_est, A, t, nan, nan}};
+
+%% Minimize Energy Function
 for iter_var=1:size(anneal_sched, 1)
     %% Pull out meta-params from annealing schedule
     N_B = anneal_sched(iter_var, 1); % Nb. beads
@@ -58,9 +64,10 @@ for iter_var=1:size(anneal_sched, 1)
             break % DEBUG
         end
         
-        fprintf('[iter_var=%d/%d] iter_inner=%d/%d\n', ...
+        fprintf('[iter_var=%d/%d] iter_inner=%d/%d E_tot: %.2f E_def: %.2f E_fit=%.2f\n', ...
             iter_var, size(anneal_sched, 1), ...
-            iter_inner, max_inner_iters);
+            iter_inner, max_inner_iters, ...
+            E_tot, E_def, E_fit);
         fprintf('E_tots: [%s]\n', sprintf('%.4f ', E_tots));
         [bs, Bs] = compute_bead_locs(xs_est', N_B); % in img frame
         %% E-step
@@ -80,10 +87,11 @@ for iter_var=1:size(anneal_sched, 1)
         %% M-step (part 2)
         % Update affine trans. A,t by minimizing E_def while keeping x_new fixed
         [A, t] = min_E_def(cs_new, cs_home);
-
-        %% Check stopping criterion
         E_def = compute_E_def(xs_est, cs_home, A, t);
         E_fit = compute_E_fit(rs, norm_terms, N_0, N_B);
+        %% Update intermeds
+        intermeds = [intermeds {{xs_est, A, t, E_def, E_fit}}];
+        %% Check stopping criterion
         E_tot_p = E_def + E_fit;
         delt = E_tot_p - E_tot;
         if abs(delt) <= EPS

@@ -30,7 +30,24 @@ ps = [ps(1,:);
     ps;
     ps(end,:)];
 
-[xs, A, t, E_def, E_fit] = fit_model(Ip, ps');
+[xs, A, t, E_def, E_fit, intermeds] = fit_model(Ip, ps');
 
 %% Visualize final output
-visualize_model(Ip, xs, A, t);
+visualize_model(Ip, xs, ps', A, t);
+suptitle(sprintf('E_tot: %.2f E_def: %.2f E_fit: %.2f', ...
+    E_def+E_fit, E_def, E_fit));
+
+%% Animate iterative process
+for i=1:length(intermeds)
+    xs_i = intermeds{i}{1};
+    A_i = intermeds{i}{2};
+    t_i = intermeds{i}{3};
+    E_def_i = intermeds{i}{4};
+    E_fit_i = intermeds{i}{5};
+    hFig = visualize_model(Ip, xs_i, ps', A_i, t_i);
+    suptitle(sprintf('Iter %d/%d (E_tot: %.2f E_def: %.2f E_fit: %.2f)', ...
+        i, length(intermeds), ...
+        E_def_i+E_fit_i, E_def_i, E_fit_i));
+    pause
+    close(hFig);
+end
