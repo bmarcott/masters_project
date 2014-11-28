@@ -16,17 +16,17 @@ function [rs, norm_terms] = compute_rs(I, bs, var_b, pi_n, B)
 %      norm_terms(i,j) -> float norm_term
 rs = zeros(B, size(I,1), size(I, 2));
 norm_terms = zeros(size(I,1), size(I,2));
-A = size(I,1)*size(I,2); % Area of image
+a = size(I,1)*size(I,2); % Area of image
 for i=1:size(I,1)
     for j=1:size(I,2)
         if (~I(i,j))
             continue
         end
         %% Compute normalization term
-        norm_term = (pi_n*B)/((1-pi_n)*A);
+        norm_term = (pi_n*B)/((1-pi_n)*a);
         for b=1:B
             mu_b = bs(:,b); % col vec
-            norm_term = norm_term + mvnpdf([j;i],mu_b,var_b*eye(2));
+            norm_term = norm_term + mvnpdf([j;i], mu_b,var_b*eye(2));
         end
         norm_terms(i,j) = norm_term;            
         %% Compute rs_b(i,j)

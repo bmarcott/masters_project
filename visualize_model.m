@@ -1,4 +1,4 @@
-function hFig = visualize_model(I, xs, ps, A, t, N_B)
+function visualize_model(I, xs, ps, A, t, N_B)
 %VISUALIZE_MODEL Visualize the model fit.
 %INPUT
 %  matrix I: [h x w]
@@ -43,13 +43,14 @@ xs_canon = inv(A)*xs - repmat(t, [1, size(xs, 2)]);
 for s=0:0.1:(nb_k-0.01)
     xy = eval_spline(s, xs_canon');
     xy = round(xy);
+    xy(1) = min(max(1, xy(1)), size(I, 1));
+    xy(2) = min(max(1, xy(2)), size(I, 2));
     Ishow_canon(xy(2), xy(1), :) = [1.0; 0; 0];
     xy = eval_spline(s, ps');
     xy = round(xy);
     Ishow_canon(xy(2), xy(1), :) = [0; 0; 1.0];
 end
 bs = compute_bead_locs(xs', N_B);
-hFig = figure;
 subplot(1,4,1);
 imshow(I);
 title('I');

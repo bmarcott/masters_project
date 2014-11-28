@@ -36,8 +36,8 @@ ps = [ps(1,:);
 visualize_model(Ip, xs, ps', A, t, 10);
 suptitle(sprintf('E_tot: %.2f E_def: %.2f E_fit: %.2f', ...
     E_def+E_fit, E_def, E_fit));
-
 %% Animate iterative process
+figure;
 for i=1:length(intermeds)
     xs_i = intermeds{i}{1};
     A_i = intermeds{i}{2};
@@ -45,10 +45,9 @@ for i=1:length(intermeds)
     E_def_i = intermeds{i}{4};
     E_fit_i = intermeds{i}{5};
     N_B_i = intermeds{i}{6};
-    hFig = visualize_model(Ip, xs_i, ps', A_i, t_i, N_B_i);
+    visualize_model(Ip, xs_i, ps', A_i, t_i, N_B_i);
     suptitle(sprintf('Iter %d/%d (E_tot: %.2f E_def: %.2f E_fit: %.2f)', ...
         i, length(intermeds), ...
         E_def_i+E_fit_i, E_def_i, E_fit_i));
     pause
-    close(hFig);
 end
