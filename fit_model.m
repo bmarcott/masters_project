@@ -12,7 +12,7 @@ function [xs_est, A, t, E_def, E_fit, intermeds] = fit_model(I, cs_home)
 %    The energy terms.
 %  cell intermeds: 
 %    Outputs the intermediate states:
-%      intermeds{i} -> {xs_est, A, t, E_def, E_fit}
+%      intermeds{i} -> {xs_est, A, t, E_def, E_fit, N_B}
 nb_c = size(cs_home, 2); % Nb. control points
 
 % I.e. N_0 is relative weight E_def vs E_fit
@@ -32,7 +32,7 @@ anneal_sched = [...
     [60, 2, 0.0006]; ...
     ];
 
-MAX_ITERS = 30;
+MAX_ITERS = 3;
 
 %% Initialize parameters
 % Affine trans (A,t) maps object frame to image frame
@@ -42,7 +42,7 @@ xs_est = A*cs_home + repmat(t, [1, nb_c]);
 %% Initialize output vals
 E_def = nan; E_fit = nan;
 E_tots = [];
-intermeds = {{xs_est, A, t, nan, nan}};
+intermeds = {{xs_est, A, t, nan, nan, 8}};
 
 %% Minimize Energy Function
 for iter_var=1:size(anneal_sched, 1)
@@ -60,10 +60,8 @@ for iter_var=1:size(anneal_sched, 1)
     %% Perform alternating minimization (via EM steps)
     for iter_inner=1:max_inner_iters
         if iter_inner > MAX_ITERS
-            return
             break % DEBUG
         end
-        
         fprintf('[iter_var=%d/%d] iter_inner=%d/%d E_tot: %.2f E_def: %.2f E_fit=%.2f\n', ...
             iter_var, size(anneal_sched, 1), ...
             iter_inner, max_inner_iters, ...
@@ -90,7 +88,7 @@ for iter_var=1:size(anneal_sched, 1)
         E_def = compute_E_def(xs_est, cs_home, A, t);
         E_fit = compute_E_fit(rs, norm_terms, N_0, N_B);
         %% Update intermeds
-        intermeds = [intermeds {{xs_est, A, t, E_def, E_fit}}];
+        intermeds = [intermeds {{xs_est, A, t, E_def, E_fit, N_B}}];
         %% Check stopping criterion
         E_tot_p = E_def + E_fit;
         delt = E_tot_p - E_tot;

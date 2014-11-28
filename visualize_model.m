@@ -1,4 +1,4 @@
-function hFig = visualize_model(I, xs, ps, A, t)
+function hFig = visualize_model(I, xs, ps, A, t, N_B)
 %VISUALIZE_MODEL Visualize the model fit.
 %INPUT
 %  matrix I: [h x w]
@@ -10,6 +10,8 @@ function hFig = visualize_model(I, xs, ps, A, t)
 %  matrix A: [2 x 2]
 %  array t: [2 x 1]
 %    The affine transformation mapping obj -> img frame.
+%  int N_B:
+%    Number of beads.
 nb_k = size(xs, 2) - 4 + 1; % nb segments
 Ishow = zeros([size(I,1), size(I,2), 3]);
 Ishow(:,:,1) = I;
@@ -46,13 +48,14 @@ for s=0:0.1:(nb_k-0.01)
     xy = round(xy);
     Ishow_canon(xy(2), xy(1), :) = [0; 0; 1.0];
 end
-
+bs = compute_bead_locs(xs', N_B);
 hFig = figure;
 subplot(1,4,1);
 imshow(I);
 title('I');
 subplot(1,4,2);
-imshow(Ishow);
+imshow(Ishow); hold on;
+plot(bs(1,:), bs(2,:), 'g+');
 title('Spline Est (in red)');
 subplot(1,4,3);
 imshow(Ishow2);

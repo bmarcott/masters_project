@@ -33,7 +33,7 @@ ps = [ps(1,:);
 [xs, A, t, E_def, E_fit, intermeds] = fit_model(Ip, ps');
 
 %% Visualize final output
-visualize_model(Ip, xs, ps', A, t);
+visualize_model(Ip, xs, ps', A, t, 10);
 suptitle(sprintf('E_tot: %.2f E_def: %.2f E_fit: %.2f', ...
     E_def+E_fit, E_def, E_fit));
 
@@ -44,7 +44,8 @@ for i=1:length(intermeds)
     t_i = intermeds{i}{3};
     E_def_i = intermeds{i}{4};
     E_fit_i = intermeds{i}{5};
-    hFig = visualize_model(Ip, xs_i, ps', A_i, t_i);
+    N_B_i = intermeds{i}{6};
+    hFig = visualize_model(Ip, xs_i, ps', A_i, t_i, N_B_i);
     suptitle(sprintf('Iter %d/%d (E_tot: %.2f E_def: %.2f E_fit: %.2f)', ...
         i, length(intermeds), ...
         E_def_i+E_fit_i, E_def_i, E_fit_i));
