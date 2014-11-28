@@ -15,14 +15,14 @@ Ip(Ip ~= 0) = 1;
 Ip = bwmorph(Ip,'skel',Inf);
 
 % a silly initial spline just to run through fit_model
-ps = [[0, 0];
-    [1, 2];
+ps = [[1, 1];
+    [1.2, 2];
     [1.5, 1.75];
-    [2.5, 0.1];
+    [2.5, 1.1];
     [3.5, 3.0];
     [4.5, 4.0];
     [5.5, 1.0];
-    [6.5, 0.0];
+    [6.5, 2.2];
     ];
 
 % duplicate start/end ctrl pts
@@ -31,3 +31,6 @@ ps = [ps(1,:);
     ps(end,:)];
 
 [xs, A, t, E_def, E_fit] = fit_model(Ip, ps');
+
+%% Visualize final output
+visualize_model(Ip, xs, A, t);

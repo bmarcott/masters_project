@@ -3,7 +3,7 @@ function [xs_est, A, t, E_def, E_fit] = fit_model(I, cs_home)
 %INPUT
 %  matrix I: [h x w]
 %  array c: [2 x n]
-%    Vector of cubic b-spline control points ('home' locations).
+%    Vector of cubic b-spline ctrl pts, 'home' locs. In obj frame.
 %OUTPUT
 %  matrix xs_est:
 %  matrix A, t:
@@ -29,15 +29,13 @@ anneal_sched = [...
     [60, 2, 0.0006]; ...
     ];
 
-MAX_ITERS = 3;
+MAX_ITERS = 1;
 
 %% Initialize parameters
 % Affine trans (A,t) maps object frame to image frame
-A = eye(2); % TODO: Actually init. this trans.
-t = [0; 0];
+[A, t] = init_affine(I, cs_home);
 % xs_est [2 x N] is ctrl-pt estimates (in image frame)
 xs_est = A*cs_home + repmat(t, [1, nb_c]); 
-
 %% Initialize output vals
 E_def = nan; E_fit = nan;
 E_tots = [];
@@ -56,8 +54,10 @@ for iter_var=1:size(anneal_sched, 1)
     %% Perform alternating minimization (via EM steps)
     for iter_inner=1:max_inner_iters
         if iter_inner > MAX_ITERS
+            return
             break % DEBUG
         end
+        
         fprintf('[iter_var=%d/%d] iter_inner=%d/%d\n', ...
             iter_var, size(anneal_sched, 1), ...
             iter_inner, max_inner_iters);
@@ -160,4 +160,39 @@ for i=1:size(b_fit,1)
     end
     b_fit(i) = t1*t2;
 end
+end
+
+function [A, t] = init_affine(I, cs_home)
+%INIT_AFFINE Initializes the affine trans. according to pg. 25:
+%  Map the bbox around ctrl pts to bbox around img pixels.
+%INPUT
+%  matrix I: [h x w]
+%  matrix cs_home: [2 x N]
+%OUTPUT
+%  matrix A: [2 x 2]
+%  array t: [2 x 1]
+%% Compute bounding box around white pixels in I
+stats = regionprops(uint8(I), 'BoundingBox');
+bbox = stats.BoundingBox; % [x y w h]
+bbox(1:2) = bbox(1:2) - 0.5; % x,y are offset by .5
+% order: [UL; UR; LL; LR]
+bbox_img = [[bbox(1:2)];
+    [bbox(1)+bbox(3), bbox(2)];
+    [bbox(1), bbox(2) + bbox(4)];
+    [bbox(1)+bbox(3), bbox(2)+bbox(4)]];
+%% Compute bounding box around spline ctrl points (in obj frame)
+x1 = min(cs_home(1,:));
+y1 = min(cs_home(2,:));
+x2 = max(cs_home(1,:));
+y2 = max(cs_home(2,:));
+w = x2 - x1; h = y2 - y1;
+bbox_obj = [[x1 y1];
+    [x1+w, y1];
+    [x1, y1+h];
+    [x1+w, y1+h]];
+tform = cp2tform(bbox_obj, bbox_img, 'affine');
+% Note: T is arranged in a weird way (transpose it to get familiar affine)
+T = tform.tdata.T'; % transpose
+A = T(1:2, 1:2);
+t = T(1:2, 3);
 end
