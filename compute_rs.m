@@ -1,6 +1,8 @@
-function [rs, norm_terms] = compute_rs(I, bs, var_b, pi_n, B)
+function [rs, norm_terms] = compute_rs(I, inked, bs, var_b, pi_n, B)
 %INPUT
 %  matrix I: [h x w]
+%  matrix inked: [N x 2]
+%    Stores the row and column of all inked pixels in I
 %  matrix bs:
 %    Stores the bead locations: bs(b,:) -> [x,y]. image-frame.
 %  float var_b:
@@ -18,11 +20,9 @@ function [rs, norm_terms] = compute_rs(I, bs, var_b, pi_n, B)
 rs = zeros(B, size(I,1), size(I, 2));
 norm_terms = zeros(size(I,1), size(I,2));
 a = size(I,1)*size(I,2); % Area of image
-for i=1:size(I,1)
-    for j=1:size(I,2)
-        if (~I(i,j))
-            continue
-        end
+for ndx = 1 : size(inked,1)
+    i = inked(ndx,1);
+    j = inked(ndx,2);
         %% Compute normalization term
         norm_term = (pi_n*B)/((1-pi_n)*a);
         for b=1:B
@@ -35,6 +35,5 @@ for i=1:size(I,1)
             mu_b = bs(:, b); % col vec            
             rs(b,i,j) = mvnpdf([j;i], mu_b, var_b*eye(2)) / norm_term;
         end
-    end
 end
 end
