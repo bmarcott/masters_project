@@ -14,6 +14,7 @@ function [rs, norm_terms] = compute_rs(I, bs, var_b, pi_n, B)
 %  matrix norm_terms:
 %    Stores the norm_terms for each pixel:
 %      norm_terms(i,j) -> float norm_term
+% See pg. 27 (Eq. 3.5)
 rs = zeros(B, size(I,1), size(I, 2));
 norm_terms = zeros(size(I,1), size(I,2));
 a = size(I,1)*size(I,2); % Area of image

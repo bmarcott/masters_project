@@ -11,6 +11,15 @@ ps = [[0, 0];
     [6.5, 0.0];
     ];
 
+ps = [[1, 5];
+    [4, 4.5];
+    [3.5, 4.0];
+    [2.5, 3.0];
+    [1.0, 1.0];
+    [2.0, 1.5];
+    [4.0, 1.75]];
+ps(:, 2) = -ps(:, 2) + ones(size(ps,1), 1) * 6;
+
 % duplicate start/end ctrl pts
 ps = [ps(1,:);
     ps;
@@ -34,6 +43,7 @@ end
 
 %% Plot things
 figure;
-plot(xs, ys); hold on;
-plot(bs(1,:), bs(2,:), 'rx');
-legend('Spline', 'Beads');
+plot(xs, ys, 'b'); hold on;
+plot(bs(1,:), bs(2,:), 'x'); hold on;
+plot(ps(:, 1), ps(:, 2), 'r+'); hold on;
+legend('Spline', 'Beads', 'Ctrl Pts');
