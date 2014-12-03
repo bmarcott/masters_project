@@ -1,5 +1,5 @@
-trainingImagePath = 'mnist/train-images.idx3-ubyte';
-trainingLabelPath = 'mnist/train-labels.idx1-ubyte';
+trainingImagePath = '/Users/ansuya/Documents/cs269-proj/mnist/train-images-idx3-ubyte';
+trainingLabelPath = '/Users/ansuya/Documents/cs269-proj/mnist/train-labels-idx1-ubyte';
 numToTrain = 20;
 offset = 0;
 

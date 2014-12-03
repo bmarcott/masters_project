@@ -1,177 +1,67 @@
-% v2-acmtog-sample.tex, dated March 7 2012
-% This is a sample file for ACM Transactions on Graphics
+\documentclass[oribibl]{llncs}
+\usepackage{epsfig}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{color, colortbl}
+\definecolor{Blue}{rgb}{0.69,0.88,0.99}
+\definecolor{LightGreen}{rgb}{ 0.96,0.99, 0.9}
+\usepackage{url}
 %
-% Compilation using 'acmtog.cls' - version 1.2 (March 2012), Aptara Inc.
-% (c) 2010 Association for Computing Machinery (ACM)
-%
-% Questions/Suggestions/Feedback should be addressed to => "acmtexsupport@aptaracorp.com".
-% Users can also go through the FAQs available on the journal's submission webpage.
-%
-% Steps to compile: latex, bibtex, latex latex
-%
-% For tracking purposes => this is v1.2 - March 2012
-\documentclass{acmtog} % V1.2
-
-%\acmVolume{VV}
-%\acmNumber{N}
-%\acmYear{YYYY}
-%\acmMonth{Month}
-%\acmArticleNum{XXX}
-%\acmdoi{10.1145/XXXXXXX.YYYYYYY}
-
-\acmVolume{}
-\acmNumber{}
-\acmYear{2014}
-\acmMonth{November}
-\acmArticleNum{1}
-\acmdoi{}
-
 \begin{document}
 
-%\markboth{V. F. Pamplona et al.}{Photorealistic Models for Pupil Light Reflex and Iridal Pattern Deformation}
-
-\title{Hand Printed Character Recognition using Splines} % title
-
-\author{Ansuya Ahluwalia 
-\affil{University of California, Los Angeles}
-\and
-Eric Kim
-\affil{University of California, Los Angeles}
-\and
-Nicholas Brett
-\affil{University of California, Los Angeles}
-% NOTE! Affiliations placed here should be for the institution where the
-%       BULK of the research was done. If the author has gone to a new
-%       institution, before publication, the (above) affiliation should NOT be changed.
-%       The authors 'current' address may be given in the "Author's addresses:" block (below).
-%       So for example, Mr. Fogarty, the bulk of the research was done at UIUC, and he is
-%       currently affiliated with NASA.
-}
-
-%\category{I.3.7}{Computer Graphics}{Three-Dimensional Graphics and Realism}[Animation]
-%\category{I.3.5}{Computer Graphics}{Computational Geometry and Object Modeling}[Physically based modeling]
-%
-%\terms{Experimentation, Human Factors}
-%
-%\keywords{Face animation, image-based modelling, iris animation, photorealism, physiologically-based modelling}
-
-%\acmformat{Vitor F. Pamplona, Manuel M. Oliveira, Gladimir V. G. Baranoski,
-%and Sean Fogarty. 2009. Photorealistic models for pupil light reflex and iridal pattern deformation.
-%{\em ACM Trans. Graph.} 28, 4, Article 106 (September 2009), 10 pages.\\
-%\doiline}
-
+\title{Hand Printed Character Recognition using Splines}
+\author{ Ansuya Ahluwalia\inst{1} \and Eric Kim\inst{1} \and Nicholas Brett\inst{1} }
+\institute{University of California, Los Angeles \\* \email{ansuya@cs.ucla.edu, eric@ucla.edu, brett@ucla.edu}}
 \maketitle
 
-%\begin{bottomstuff}
-%\end{bottomstuff}
-
-
 \begin{abstract}
+
 Automated handwriting detection remains an interesting yet challenging problem in the Vision field. Due to the curve-like nature of handwriting, it seems natural to consider approaches that directly model these curves. This project will investigate a particular approach from Hinton et. al \cite{Hinton92adaptiveelastic} that uses an elastic model to recognize digits. Each digit class is represented by a cubic spline in an "ideal" configuration. To classify a test image, an iterative algorithm performs an elastic match between the test image and each digit model - the digit class with the best score wins. In addition, this project will investigate several extensions to the original model. Validation will be performed against the publically-available handwritten digit dataset, MNIST.
+
 \end{abstract}
+
+\keywords{}
 
 \section{Introduction}
 
 
-
-%\begin{table*}[t]
-%\tabcolsep22pt
-%\tbl{Summary of the  Main Mathematical and Physical Quantities Considered in the Development of the Proposed
-%Models}{%
-%\begin{tabular}{@{}ccc@{}}\hline
-%Symbol &{Description} &{Physical Unit} \\
-%\hline
-%$L_{b}$ & luminance & blondels (B) \\
-%$L_{fL}$ & luminance & foot-Lambert (fL) \\
-%$I_{l}$ & illuminance & lumens/$mm^2$  (lm/$mm^2$)\\
-%$R$ & light frequency & {Hertz (Hz)} \\
-%%% $\phi$ & retinal light flux & lumens  ({\it lm}) \\
-%%% $\bar{\phi}$ & retinal light flux threshold & lumens  ({\it lm}) \\
-%$D$ & pupil diameter & millimeters  ({\it mm}) \\
-%$A$ & pupil area & square millimeters  ($mm^2$) \\
-%$r_I$ & individual variability index & $r_I \in$ [0,1] \\
-%$t$ & current simulation time & milliseconds  ({\it ms}) \\
-%$\tau$ & pupil latency & milliseconds  ({\it ms}) \\
-%$x$ & muscular activity & none\\
-%$\rho_{i}$ & ratio describing the relative position & none \\
-%$\beta, \alpha, \gamma, k$ & constants of proportionality & none \\\hline
-%\end{tabular}}
-%\label{tab:symbols}
-%\begin{tabnote}
-%This is an example of table footnote. This is an example of table footnote. This is an example of table footnote.
-%This is an example of table footnote. This is an example of table footnote.
-%\end{tabnote}
-%\end{table*}
-
-%\begin{figure*}[t]
-%\centerline{\includegraphics[width=11cm]{tog-sample-mouse}}
-%\caption{}
-%  \label{fig:videocomparison}
-%\end{figure*}
-
-
 \section{Related Work}
-\label{sec:relatedwork}
-%
-
+ 
+%\begin{figure}
+%\centering
+%\includegraphics[height=5cm , width=13cm ]{Methodology.pdf}
+%\caption[]{Flowchart for general methodology used. Figure shows the interplay of content-driven and socially driven approaches employed to study the evolution of conversations and the patterns of user behavior.} 
+%\label{fig:MethodologyFlowchart}
+%\end{figure}
 
 \section{Methodology}
-\label{sec:methodology}
-%
+
+%The steps of this process are demonstrated in Figure \ref{fig:MethodologyFlowchart}. 
 
 \section{Results and Discussion}
-\label{sec:resultsanddiscussion}
-%
+% \footnote{.}
 
 \section{Conclusion}
-\label{sec:conclusion}
+
+%Listed in Table  \ref{table:topics} 
 %
+%\begin{table}[tp]\scriptsize
+%\caption{Top 19 words generated for 10 distinct topics found using LDA Topic Modeling.}
+%\label{table:topics}
+%\centering
+%\setlength{\tabcolsep}{6.5pt}
+%\begin{tabular}{p{1cm} p{7.7cm} p{2cm}}
+%\hline\noalign{\smallskip}\hline\noalign{\smallskip}
+%Topic \# & Top Words & Topic\\
+%\noalign{\smallskip}
+%\hline
+%
+%\hline\noalign{\smallskip}\hline\noalign{\smallskip}
+%\end{tabular}
+%\end{table}
 
-
-
-% Start of "Sample References" section
-
-%\section{Typical references in new ACM Reference Format}
-%A paginated journal article \cite{Abril07}, an enumerated
-%journal article \cite{Cohen07}, a reference to an entire issue \cite{JCohen96},
-%a monograph (whole book) \cite{Kosiur01}, a monograph/whole book in a series (see 2a in spec. document)
-%\cite{Harel79}, a divisible-book such as an anthology or compilation \cite{Editor00}
-%followed by the same example, however we only output the series if the volume number is given
-%\cite{Editor00a} (so Editor00a's series should NOT be present since it has no vol. no.),
-%a chapter in a divisible book \cite{Spector90}, a chapter in a divisible book
-%in a series \cite{Douglass98}, a multi-volume work as book \cite{Knuth97},
-%an article in a proceedings (of a conference, symposium, workshop for example)
-%(paginated proceedings article) \cite{Andler79}, a proceedings article
-%with all possible elements \cite{Smith10}, an example of an enumerated
-%proceedings article \cite{VanGundy07},
-%an informally published work \cite{Harel78}, a doctoral dissertation \cite{Clarkson85},
-%a master's thesis: \cite{anisi03}, an online document / world wide web resource \cite{Thornburg01}, \cite{Ablamowicz07},
-%\cite{Poker06}, a video game (Case 1) \cite{Obama08} and (Case 2) \cite{Novak03}
-%and \cite{Lee05} and (Case 3) a patent \cite{JoeScientist001},
-%work accepted for publication \cite{rous08}, 'YYYYb'-test for prolific author
-%\cite{SaeediMEJ10} and \cite{SaeediJETC10}. Other cites might contain
-%'duplicate' DOI and URLs (some SIAM articles) \cite{Kirschmer:2010:AEI:1958016.1958018}.
-%Boris / Barbara Beeton: multi-volume works as books
-%\cite{MR781536} and \cite{MR781537}.
-
-\appendix
-
-\section{Elastic Net Algorithm (example)}
-\label{sec:ena}
-
-
-\begin{acks}
-
-\end{acks}
-
-% Bibliography
-\bibliographystyle{ACM-Reference-Format-Journals}
-\bibliography{project-bibfile}
-                                % Sample .bib file with references that match those in
-                                % the 'Specifications Document (V1.5)' as well containing
-                                % 'legacy' bibs and bibs with 'alternate codings'.
-                                % Gerry Murray - March 2012
-
-%\received{September 2008}{March 2009}
+ \bibliography{project-bibfile}
+\bibliographystyle{plain}
 
 \end{document}
