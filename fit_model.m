@@ -100,11 +100,17 @@ for iter_var=1:size(anneal_sched, 1)
         %% Check stopping criterion
         E_tot_p = E_def + E_fit;
         delt = E_tot_p - E_tot;
+        E_tot = E_tot_p;
+        E_tots = [E_tots E_tot];
+        fprintf('[iter_var=%d/%d] iter_inner=%d/%d E_tot: %.2f E_def: %.2f E_fit=%.2f\n', ...
+            iter_var, size(anneal_sched, 1), ...
+            iter_inner, max_inner_iters, ...
+            E_tot, E_def, E_fit);
         if abs(delt) <= EPS
             break % Converged
         end
-        E_tot = E_tot_p;
-        E_tots = [E_tots E_tot];
+    
+        
     end
 end
 end
