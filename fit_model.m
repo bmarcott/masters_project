@@ -159,7 +159,7 @@ for i=1:size(M_fit,1)
     for j=1:size(M_fit,2)
         t2 = 0.0;
         for g=1:B
-            t3 = sum(sum(squeeze(rs(g,:,:))));
+            t3 = sum(sum(rs(g,:,:))); % 41.7% -> 6.4% (remove squeeze)
             t4 = Bs(g,1,i)*Bs(g,1,j) + Bs(g,2,i)*Bs(g,2,j);
             t2 = t2 + (t3*t4);
         end
@@ -174,8 +174,8 @@ for i=1:size(b_fit,1)
     for g=1:B
         for ii=1:size(rs, 2)
             for jj=1:size(rs, 3)
-                t2 = t2 + (rs(g,ii,jj)*(Bs(g,1,i)*jj + Bs(g,2,i)*ii));
-            end
+                t2 = t2 + (rs(g,ii,jj)*(Bs(g,1,i)*jj + Bs(g,2,i)*ii)); % 43.2%
+            end % 40.5% time spent in this loop
         end
     end
     b_fit(i) = t1*t2;
