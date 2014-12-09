@@ -172,10 +172,19 @@ t1 = (N_0/((var_b^2)*B));
 for i=1:size(b_fit,1)
     t2 = 0.0;
     for g=1:B
-        for ii=1:size(rs, 2)
-            for jj=1:size(rs, 3)
-                t2 = t2 + (rs(g,ii,jj)*(Bs(g,1,i)*jj + Bs(g,2,i)*ii)); % 43.2%
-            end % 40.5% time spent in this loop
+        if 0
+            %% Vectorized, but not any faster than for-loops (oddly)
+            foo1 = Bs(g,1,i).*repmat(1:size(rs,3), [size(rs,2),1]);
+            foo2 = Bs(g,2,i).*repmat((1:size(rs,2))', [1, size(rs,3)]);
+            foo = squeeze(rs(g,:,:)).*(foo1 + foo2);
+            t2 = t2 + sum(foo(:));
+        else
+            %% old way of computing t2
+            for ii=1:size(rs, 2)
+                for jj=1:size(rs, 3)
+                    t2 = t2 + (rs(g,ii,jj)*(Bs(g,1,i)*jj + Bs(g,2,i)*ii)); % 43.2%
+                end % 40.5% time spent in this loop
+            end
         end
     end
     b_fit(i) = t1*t2;

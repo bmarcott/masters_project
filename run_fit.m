@@ -35,7 +35,7 @@ tic1 = tic;
 toc1 = toc(tic1);
 fprintf('Finished fit_model (%.2fs)\n', toc1);
 
-if 1
+if 0
 %% Visualize final output
 visualize_model(Ip, xs, ps', A, t, 10);
 suptitle(sprintf('E_tot: %.2f E_def: %.2f E_fit: %.2f', ...
