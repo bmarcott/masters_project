@@ -1,0 +1,48 @@
+77
+    - E_def was huge for digit 2. E_data was negative
+
+110 *
+    - Odd deformation for model 2
+
+181
+    - E_data is negative
+
+190
+    - Why is the top of the '3' pointed up? did it just not converge?
+
+191
+    - very bad fit 2
+    - is also a hard image
+
+11
+    - good fit for 3, but E_deform is huge,E_data is neg
+
+75
+    - classified right, but fit weirdly
+
+199*
+    - very bad fit for 3
+
+Good examples
+162*
+    - digit 2.
+
+221
+    - digit 2
+
+8*
+    - digit 3
+
+28
+    - digit 3
+
+131
+    - digit 3
+    - Why is E_data so similar?
+
+
+Odd
+31*
+    Correctly classified it as a 3, but it looks like shit
+
+

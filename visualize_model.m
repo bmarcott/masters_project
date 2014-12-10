@@ -55,17 +55,17 @@ for s=0:0.1:(nb_k-0.01)
     Ishow_canon(xy(2), xy(1), :) = [0; 0; 1.0];
 end
 bs = compute_bead_locs(xs', N_B);
-subplot(1,4,1);
+subplot(1,2,1);
 imshow(I);
 title('I');
-subplot(1,4,2);
+subplot(1,2,2);
 imshow(Ishow); hold on;
 plot(bs(1,:), bs(2,:), 'g+');
 title('Spline Est (in red)');
-subplot(1,4,3);
-imshow(Ishow2);
-title('Home spline (blue)');
-subplot(1,4,4);
-imshow(Ishow_canon);
-title('Canonical frame');
+%subplot(1,4,3);
+%imshow(Ishow2);
+%title('Home spline (blue)');
+%subplot(1,4,4);
+%imshow(Ishow_canon);
+%title('Canonical frame');
 end

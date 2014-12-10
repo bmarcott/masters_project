@@ -1,4 +1,4 @@
-function [xs_est, A, t, E_def, E_fit, intermeds] = fit_model(I, cs_home)
+function [xs_est, A, t, E_def, E_fit, intermeds] = fit_model(I, cs_home, anneal_sched, N_0, pi_n, C, verbose)
 %FIT_MODEL Fits cubic b-spline to image I.
 %INPUT
 %  matrix I: [h x w]
@@ -16,31 +16,13 @@ function [xs_est, A, t, E_def, E_fit, intermeds] = fit_model(I, cs_home)
 nb_c = size(cs_home, 2); % Nb. control points
 
 % I.e. N_0 is relative weight E_def vs E_fit
-N_0 = 160; % "Standard" nb. of pixels. [See pg. 31 of thesis]
+%N_0 = 160; % "Standard" nb. of pixels. [See pg. 31 of thesis]
 N_I = sum(sum(I));  % Nb. of inked pixels (assumes binary image I)
-pi_n = 0.3; % mixing coef. btwn uniform-noise and gaussian-mixture
+%pi_n = 0.3; % mixing coef. btwn uniform-noise and gaussian-mixture
 EPS = 1e-8;
 
 [inkedRows, inkedCols] = find(I == 1);
 inked = [inkedRows, inkedCols];
-
-anneal_sched = [...
-    %[int NB_BEADS, int MAX_INNER_ITERS, float VAR]
-    %[8, 5, 0.04]; ...
-    %[15, 3, 0.02]; ...
-    %[15, 3, 0.01]; ...
-    %[15, 35, 0.008]; ...
-    %[30, 35, 0.0025]; ...
-    %[60, 45, 0.0006]; ...
-    %[60, 2, 0.0006]; ...
-    [7, 2, 0.4]; ...
-    [14, 3, 0.2]; ...
-    [14, 5, 0.1]; ...
-    [14, 8, 0.08]; ...
-    [28, 16, 0.04]; ...
-    ];
-
-MAX_ITERS = Inf;
 
 %% Initialize parameters
 % Affine trans (A,t) maps object frame to image frame
@@ -63,18 +45,10 @@ for iter_var=1:size(anneal_sched, 1)
     [rs, norm_terms] = compute_rs(I, inked, bs, var_b, pi_n, N_B);
     E_def = compute_E_def(xs_est, cs_home, A, t);
     E_fit = compute_E_fit(rs, norm_terms, N_0, N_B);
-    E_tot = E_def + E_fit;
+    E_tot = C*E_def + E_fit;
     E_tots = [E_tots E_tot];
     %% Perform alternating minimization (via EM steps)
     for iter_inner=1:max_inner_iters
-        if iter_inner > MAX_ITERS
-            break % DEBUG
-        end
-        fprintf('[iter_var=%d/%d] iter_inner=%d/%d E_tot: %.2f E_def: %.2f E_fit=%.2f\n', ...
-            iter_var, size(anneal_sched, 1), ...
-            iter_inner, max_inner_iters, ...
-            E_tot, E_def, E_fit);
-        %fprintf('E_tots: [%s]\n', sprintf('%.4f ', E_tots));
         [bs, Bs] = compute_bead_locs(xs_est', N_B); % in img frame
         %% E-step
         % Evaluate responsiblity of each bead for each pixel
@@ -86,8 +60,8 @@ for iter_var=1:size(anneal_sched, 1)
         % (2) Compute M_fit, b_fit
         [M_fit, b_fit] = compute_Mb_fit(nb_c, N_B, N_0, N_I, rs, Bs, var_b);
         % Solve linear system to update bead locations: Mx = b
-        M = (M_def + M_fit);
-        b = (b_def + b_fit);
+        M = (C*M_def + M_fit);
+        b = (C*b_def + b_fit);
         cs_new = (M\b); % stacked (x,y) coords. In image coords. M*cs = b
         xs_est = reshape(cs_new, [2, nb_c]);
         %% M-step (part 2)
@@ -98,19 +72,20 @@ for iter_var=1:size(anneal_sched, 1)
         %% Update intermeds
         intermeds = [intermeds {{xs_est, A, t, E_def, E_fit, N_B}}];
         %% Check stopping criterion
-        E_tot_p = E_def + E_fit;
+        E_tot_p = C*E_def + E_fit;
         delt = E_tot_p - E_tot;
         E_tot = E_tot_p;
         E_tots = [E_tots E_tot];
-        fprintf('[iter_var=%d/%d] iter_inner=%d/%d E_tot: %.2f E_def: %.2f E_fit=%.2f\n', ...
-            iter_var, size(anneal_sched, 1), ...
-            iter_inner, max_inner_iters, ...
-            E_tot, E_def, E_fit);
+        if verbose
+            fprintf('[iter_var=%d/%d] iter_inner=%d/%d E_tot: %.2f E_def: %.2f E_fit=%.2f\n', ...
+                iter_var, size(anneal_sched, 1), ...
+                iter_inner, max_inner_iters, ...
+                E_tot, E_def, E_fit);
+        end
         if abs(delt) <= EPS
+            fprintf('Converged!\n');
             break % Converged
         end
-    
-        
     end
 end
 end
@@ -159,7 +134,7 @@ for i=1:size(M_fit,1)
     for j=1:size(M_fit,2)
         t2 = 0.0;
         for g=1:B
-            t3 = sum(sum(squeeze(rs(g,:,:))));
+            t3 = sum(sum(rs(g,:,:))); % 41.7% -> 6.4% (remove squeeze)
             t4 = Bs(g,1,i)*Bs(g,1,j) + Bs(g,2,i)*Bs(g,2,j);
             t2 = t2 + (t3*t4);
         end
@@ -172,9 +147,18 @@ t1 = (N_0/((var_b^2)*B));
 for i=1:size(b_fit,1)
     t2 = 0.0;
     for g=1:B
-        for ii=1:size(rs, 2)
-            for jj=1:size(rs, 3)
-                t2 = t2 + (rs(g,ii,jj)*(Bs(g,1,i)*jj + Bs(g,2,i)*ii));
+        if 0
+            %% Vectorized, but not any faster than for-loops (oddly)
+            foo1 = Bs(g,1,i).*repmat(1:size(rs,3), [size(rs,2),1]);
+            foo2 = Bs(g,2,i).*repmat((1:size(rs,2))', [1, size(rs,3)]);
+            foo = squeeze(rs(g,:,:)).*(foo1 + foo2);
+            t2 = t2 + sum(foo(:));
+        else
+            %% old way of computing t2
+            for ii=1:size(rs, 2)
+                for jj=1:size(rs, 3)
+                    t2 = t2 + (rs(g,ii,jj)*(Bs(g,1,i)*jj + Bs(g,2,i)*ii)); % 43.2%
+                end % 40.5% time spent in this loop
             end
         end
     end

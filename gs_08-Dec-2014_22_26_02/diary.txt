@@ -1,0 +1,1607 @@
+(do_gridsearch.m) Starting new gridsearch at: gs_08-Dec-2014 22:26:02
+
+datestr_now =
+
+08-Dec-2014 22:26:02
+
+==== GridSearch (1/8) ====
+N_0 is: 40
+PI_N is: 1.000000e-01
+C is: 1
+== Classifying image 1/83 ==
+Converged!
+== Finished image 1/83 (45.4842s) ==
+== Classifying image 2/83 ==
+Converged!
+== Finished image 2/83 (44.4259s) ==
+== Classifying image 3/83 ==
+== Finished image 3/83 (46.4698s) ==
+== Classifying image 4/83 ==
+== Finished image 4/83 (46.9681s) ==
+== Classifying image 5/83 ==
+== Finished image 5/83 (46.4273s) ==
+== Classifying image 6/83 ==
+== Finished image 6/83 (46.0568s) ==
+== Classifying image 7/83 ==
+== Finished image 7/83 (46.1384s) ==
+== Classifying image 8/83 ==
+== Finished image 8/83 (46.4617s) ==
+== Classifying image 9/83 ==
+== Finished image 9/83 (47.0596s) ==
+== Classifying image 10/83 ==
+Converged!
+== Finished image 10/83 (45.5019s) ==
+== Classifying image 11/83 ==
+== Finished image 11/83 (46.7747s) ==
+== Classifying image 12/83 ==
+== Finished image 12/83 (46.9248s) ==
+== Classifying image 13/83 ==
+Converged!
+== Finished image 13/83 (41.2525s) ==
+== Classifying image 14/83 ==
+== Finished image 14/83 (47.3449s) ==
+== Classifying image 15/83 ==
+Converged!
+== Finished image 15/83 (45.8164s) ==
+== Classifying image 16/83 ==
+== Finished image 16/83 (46.5048s) ==
+== Classifying image 17/83 ==
+== Finished image 17/83 (45.7227s) ==
+== Classifying image 18/83 ==
+== Finished image 18/83 (46.2748s) ==
+== Classifying image 19/83 ==
+== Finished image 19/83 (46.3307s) ==
+== Classifying image 20/83 ==
+== Finished image 20/83 (45.6001s) ==
+== Classifying image 21/83 ==
+Converged!
+== Finished image 21/83 (44.8346s) ==
+== Classifying image 22/83 ==
+== Finished image 22/83 (46.2168s) ==
+== Classifying image 23/83 ==
+== Finished image 23/83 (46.5300s) ==
+== Classifying image 24/83 ==
+== Finished image 24/83 (46.4866s) ==
+== Classifying image 25/83 ==
+Converged!
+== Finished image 25/83 (46.4376s) ==
+== Classifying image 26/83 ==
+== Finished image 26/83 (46.6268s) ==
+== Classifying image 27/83 ==
+== Finished image 27/83 (46.7120s) ==
+== Classifying image 28/83 ==
+== Finished image 28/83 (46.8308s) ==
+== Classifying image 29/83 ==
+Converged!
+== Finished image 29/83 (43.9278s) ==
+== Classifying image 30/83 ==
+Converged!
+== Finished image 30/83 (45.7231s) ==
+== Classifying image 31/83 ==
+== Finished image 31/83 (46.1043s) ==
+== Classifying image 32/83 ==
+== Finished image 32/83 (46.4599s) ==
+== Classifying image 33/83 ==
+== Finished image 33/83 (46.3028s) ==
+== Classifying image 34/83 ==
+== Finished image 34/83 (46.3966s) ==
+== Classifying image 35/83 ==
+Converged!
+== Finished image 35/83 (45.6854s) ==
+== Classifying image 36/83 ==
+== Finished image 36/83 (46.1970s) ==
+== Classifying image 37/83 ==
+Converged!
+== Finished image 37/83 (46.0462s) ==
+== Classifying image 38/83 ==
+Converged!
+== Finished image 38/83 (45.4591s) ==
+== Classifying image 39/83 ==
+== Finished image 39/83 (46.1911s) ==
+== Classifying image 40/83 ==
+== Finished image 40/83 (46.3231s) ==
+== Classifying image 41/83 ==
+== Finished image 41/83 (45.6662s) ==
+== Classifying image 42/83 ==
+Converged!
+== Finished image 42/83 (44.8637s) ==
+== Classifying image 43/83 ==
+Converged!
+== Finished image 43/83 (43.3968s) ==
+== Classifying image 44/83 ==
+Converged!
+== Finished image 44/83 (46.6829s) ==
+== Classifying image 45/83 ==
+== Finished image 45/83 (46.3673s) ==
+== Classifying image 46/83 ==
+== Finished image 46/83 (46.7911s) ==
+== Classifying image 47/83 ==
+Converged!
+== Finished image 47/83 (42.8564s) ==
+== Classifying image 48/83 ==
+== Finished image 48/83 (46.3345s) ==
+== Classifying image 49/83 ==
+Converged!
+== Finished image 49/83 (44.5597s) ==
+== Classifying image 50/83 ==
+== Finished image 50/83 (45.9551s) ==
+== Classifying image 51/83 ==
+Converged!
+== Finished image 51/83 (42.0574s) ==
+== Classifying image 52/83 ==
+== Finished image 52/83 (46.8809s) ==
+== Classifying image 53/83 ==
+== Finished image 53/83 (46.4846s) ==
+== Classifying image 54/83 ==
+Converged!
+== Finished image 54/83 (44.3761s) ==
+== Classifying image 55/83 ==
+Converged!
+== Finished image 55/83 (45.6728s) ==
+== Classifying image 56/83 ==
+== Finished image 56/83 (46.9660s) ==
+== Classifying image 57/83 ==
+Converged!
+Converged!
+== Finished image 57/83 (40.9870s) ==
+== Classifying image 58/83 ==
+Converged!
+== Finished image 58/83 (42.3211s) ==
+== Classifying image 59/83 ==
+== Finished image 59/83 (46.3048s) ==
+== Classifying image 60/83 ==
+== Finished image 60/83 (46.3171s) ==
+== Classifying image 61/83 ==
+== Finished image 61/83 (46.0366s) ==
+== Classifying image 62/83 ==
+== Finished image 62/83 (46.5353s) ==
+== Classifying image 63/83 ==
+== Finished image 63/83 (46.9087s) ==
+== Classifying image 64/83 ==
+== Finished image 64/83 (46.7473s) ==
+== Classifying image 65/83 ==
+Converged!
+== Finished image 65/83 (44.5311s) ==
+== Classifying image 66/83 ==
+Converged!
+== Finished image 66/83 (44.7375s) ==
+== Classifying image 67/83 ==
+== Finished image 67/83 (47.3071s) ==
+== Classifying image 68/83 ==
+Converged!
+== Finished image 68/83 (44.8065s) ==
+== Classifying image 69/83 ==
+Converged!
+Converged!
+== Finished image 69/83 (40.6272s) ==
+== Classifying image 70/83 ==
+== Finished image 70/83 (46.4286s) ==
+== Classifying image 71/83 ==
+== Finished image 71/83 (45.9886s) ==
+== Classifying image 72/83 ==
+== Finished image 72/83 (46.3730s) ==
+== Classifying image 73/83 ==
+Converged!
+== Finished image 73/83 (42.8503s) ==
+== Classifying image 74/83 ==
+== Finished image 74/83 (46.4457s) ==
+== Classifying image 75/83 ==
+Converged!
+== Finished image 75/83 (44.8578s) ==
+== Classifying image 76/83 ==
+Converged!
+== Finished image 76/83 (43.6703s) ==
+== Classifying image 77/83 ==
+== Finished image 77/83 (45.7495s) ==
+== Classifying image 78/83 ==
+== Finished image 78/83 (46.0843s) ==
+== Classifying image 79/83 ==
+== Finished image 79/83 (46.6883s) ==
+== Classifying image 80/83 ==
+== Finished image 80/83 (46.5942s) ==
+== Classifying image 81/83 ==
+== Finished image 81/83 (47.0804s) ==
+== Classifying image 82/83 ==
+== Finished image 82/83 (46.6665s) ==
+== Classifying image 83/83 ==
+== Finished image 83/83 (46.5179s) ==
+Done fitting. (3793.16s)
+Acc: 0.5542 (nb_pos: 46 nb_neg: 37)
+[Digit 2] Acc: 0.5000 (nb_pos: 21 nb_neg: 21)
+[Digit 3] Acc: 0.6098 (nb_pos: 25 nb_neg: 16)
+Done.
+Finished comb_i=1 (3793.7009s)
+==== GridSearch (2/8) ====
+N_0 is: 40
+PI_N is: 3.000000e-01
+C is: 1
+== Classifying image 1/83 ==
+== Finished image 1/83 (46.8221s) ==
+== Classifying image 2/83 ==
+== Finished image 2/83 (46.8938s) ==
+== Classifying image 3/83 ==
+== Finished image 3/83 (46.5392s) ==
+== Classifying image 4/83 ==
+Converged!
+== Finished image 4/83 (43.3194s) ==
+== Classifying image 5/83 ==
+== Finished image 5/83 (46.4860s) ==
+== Classifying image 6/83 ==
+Converged!
+Converged!
+== Finished image 6/83 (41.5087s) ==
+== Classifying image 7/83 ==
+== Finished image 7/83 (45.8108s) ==
+== Classifying image 8/83 ==
+== Finished image 8/83 (46.4809s) ==
+== Classifying image 9/83 ==
+== Finished image 9/83 (46.1619s) ==
+== Classifying image 10/83 ==
+== Finished image 10/83 (46.0252s) ==
+== Classifying image 11/83 ==
+== Finished image 11/83 (46.2228s) ==
+== Classifying image 12/83 ==
+Converged!
+== Finished image 12/83 (44.8190s) ==
+== Classifying image 13/83 ==
+== Finished image 13/83 (46.1017s) ==
+== Classifying image 14/83 ==
+== Finished image 14/83 (46.0734s) ==
+== Classifying image 15/83 ==
+== Finished image 15/83 (45.8866s) ==
+== Classifying image 16/83 ==
+== Finished image 16/83 (45.8367s) ==
+== Classifying image 17/83 ==
+== Finished image 17/83 (45.9171s) ==
+== Classifying image 18/83 ==
+== Finished image 18/83 (46.6130s) ==
+== Classifying image 19/83 ==
+== Finished image 19/83 (47.0879s) ==
+== Classifying image 20/83 ==
+== Finished image 20/83 (46.8256s) ==
+== Classifying image 21/83 ==
+== Finished image 21/83 (45.9462s) ==
+== Classifying image 22/83 ==
+== Finished image 22/83 (46.2810s) ==
+== Classifying image 23/83 ==
+== Finished image 23/83 (46.0193s) ==
+== Classifying image 24/83 ==
+== Finished image 24/83 (46.6025s) ==
+== Classifying image 25/83 ==
+Converged!
+== Finished image 25/83 (44.2891s) ==
+== Classifying image 26/83 ==
+== Finished image 26/83 (46.7888s) ==
+== Classifying image 27/83 ==
+== Finished image 27/83 (46.5662s) ==
+== Classifying image 28/83 ==
+== Finished image 28/83 (46.3664s) ==
+== Classifying image 29/83 ==
+== Finished image 29/83 (45.9718s) ==
+== Classifying image 30/83 ==
+== Finished image 30/83 (46.0315s) ==
+== Classifying image 31/83 ==
+== Finished image 31/83 (45.8382s) ==
+== Classifying image 32/83 ==
+== Finished image 32/83 (45.9156s) ==
+== Classifying image 33/83 ==
+== Finished image 33/83 (46.1461s) ==
+== Classifying image 34/83 ==
+== Finished image 34/83 (45.7438s) ==
+== Classifying image 35/83 ==
+== Finished image 35/83 (45.6393s) ==
+== Classifying image 36/83 ==
+== Finished image 36/83 (46.1716s) ==
+== Classifying image 37/83 ==
+Converged!
+== Finished image 37/83 (41.9096s) ==
+== Classifying image 38/83 ==
+== Finished image 38/83 (46.6685s) ==
+== Classifying image 39/83 ==
+== Finished image 39/83 (46.0431s) ==
+== Classifying image 40/83 ==
+== Finished image 40/83 (46.1876s) ==
+== Classifying image 41/83 ==
+== Finished image 41/83 (46.3715s) ==
+== Classifying image 42/83 ==
+Converged!
+== Finished image 42/83 (45.9013s) ==
+== Classifying image 43/83 ==
+== Finished image 43/83 (45.9442s) ==
+== Classifying image 44/83 ==
+== Finished image 44/83 (46.0792s) ==
+== Classifying image 45/83 ==
+== Finished image 45/83 (46.1955s) ==
+== Classifying image 46/83 ==
+== Finished image 46/83 (46.9357s) ==
+== Classifying image 47/83 ==
+== Finished image 47/83 (46.6897s) ==
+== Classifying image 48/83 ==
+== Finished image 48/83 (46.4967s) ==
+== Classifying image 49/83 ==
+Converged!
+== Finished image 49/83 (46.1736s) ==
+== Classifying image 50/83 ==
+== Finished image 50/83 (46.6687s) ==
+== Classifying image 51/83 ==
+== Finished image 51/83 (45.9442s) ==
+== Classifying image 52/83 ==
+== Finished image 52/83 (46.7641s) ==
+== Classifying image 53/83 ==
+Converged!
+== Finished image 53/83 (44.2222s) ==
+== Classifying image 54/83 ==
+== Finished image 54/83 (46.4971s) ==
+== Classifying image 55/83 ==
+== Finished image 55/83 (46.6506s) ==
+== Classifying image 56/83 ==
+Converged!
+== Finished image 56/83 (42.3859s) ==
+== Classifying image 57/83 ==
+== Finished image 57/83 (46.1039s) ==
+== Classifying image 58/83 ==
+== Finished image 58/83 (46.5031s) ==
+== Classifying image 59/83 ==
+== Finished image 59/83 (46.2305s) ==
+== Classifying image 60/83 ==
+Converged!
+== Finished image 60/83 (45.3235s) ==
+== Classifying image 61/83 ==
+Converged!
+== Finished image 61/83 (44.8040s) ==
+== Classifying image 62/83 ==
+== Finished image 62/83 (46.0802s) ==
+== Classifying image 63/83 ==
+== Finished image 63/83 (46.2158s) ==
+== Classifying image 64/83 ==
+== Finished image 64/83 (46.0652s) ==
+== Classifying image 65/83 ==
+== Finished image 65/83 (46.1782s) ==
+== Classifying image 66/83 ==
+== Finished image 66/83 (46.1499s) ==
+== Classifying image 67/83 ==
+== Finished image 67/83 (46.3244s) ==
+== Classifying image 68/83 ==
+== Finished image 68/83 (46.5101s) ==
+== Classifying image 69/83 ==
+Converged!
+== Finished image 69/83 (45.9486s) ==
+== Classifying image 70/83 ==
+Converged!
+== Finished image 70/83 (41.7411s) ==
+== Classifying image 71/83 ==
+== Finished image 71/83 (46.3485s) ==
+== Classifying image 72/83 ==
+== Finished image 72/83 (46.2691s) ==
+== Classifying image 73/83 ==
+== Finished image 73/83 (46.0034s) ==
+== Classifying image 74/83 ==
+== Finished image 74/83 (45.6734s) ==
+== Classifying image 75/83 ==
+Converged!
+== Finished image 75/83 (42.7844s) ==
+== Classifying image 76/83 ==
+== Finished image 76/83 (46.1232s) ==
+== Classifying image 77/83 ==
+Converged!
+Converged!
+== Finished image 77/83 (42.4036s) ==
+== Classifying image 78/83 ==
+== Finished image 78/83 (46.5874s) ==
+== Classifying image 79/83 ==
+== Finished image 79/83 (45.5313s) ==
+== Classifying image 80/83 ==
+== Finished image 80/83 (45.8515s) ==
+== Classifying image 81/83 ==
+Converged!
+== Finished image 81/83 (44.6215s) ==
+== Classifying image 82/83 ==
+== Finished image 82/83 (45.9025s) ==
+== Classifying image 83/83 ==
+== Finished image 83/83 (45.8988s) ==
+Done fitting. (3800.71s)
+Acc: 0.5422 (nb_pos: 45 nb_neg: 38)
+[Digit 2] Acc: 0.5952 (nb_pos: 25 nb_neg: 17)
+[Digit 3] Acc: 0.4878 (nb_pos: 20 nb_neg: 21)
+Done.
+Finished comb_i=2 (3801.1110s)
+==== GridSearch (3/8) ====
+N_0 is: 80
+PI_N is: 1.000000e-01
+C is: 1
+== Classifying image 1/83 ==
+== Finished image 1/83 (46.8482s) ==
+== Classifying image 2/83 ==
+Converged!
+== Finished image 2/83 (43.2202s) ==
+== Classifying image 3/83 ==
+== Finished image 3/83 (45.8534s) ==
+== Classifying image 4/83 ==
+Converged!
+== Finished image 4/83 (46.1597s) ==
+== Classifying image 5/83 ==
+== Finished image 5/83 (46.7942s) ==
+== Classifying image 6/83 ==
+== Finished image 6/83 (46.4474s) ==
+== Classifying image 7/83 ==
+== Finished image 7/83 (46.3208s) ==
+== Classifying image 8/83 ==
+Converged!
+== Finished image 8/83 (45.3305s) ==
+== Classifying image 9/83 ==
+== Finished image 9/83 (46.7481s) ==
+== Classifying image 10/83 ==
+== Finished image 10/83 (46.6491s) ==
+== Classifying image 11/83 ==
+Converged!
+== Finished image 11/83 (45.3762s) ==
+== Classifying image 12/83 ==
+Converged!
+== Finished image 12/83 (44.7644s) ==
+== Classifying image 13/83 ==
+Converged!
+== Finished image 13/83 (41.3431s) ==
+== Classifying image 14/83 ==
+== Finished image 14/83 (46.7102s) ==
+== Classifying image 15/83 ==
+== Finished image 15/83 (46.7867s) ==
+== Classifying image 16/83 ==
+Converged!
+== Finished image 16/83 (46.3034s) ==
+== Classifying image 17/83 ==
+Converged!
+== Finished image 17/83 (44.4006s) ==
+== Classifying image 18/83 ==
+== Finished image 18/83 (46.2302s) ==
+== Classifying image 19/83 ==
+Converged!
+== Finished image 19/83 (45.5783s) ==
+== Classifying image 20/83 ==
+Converged!
+== Finished image 20/83 (46.0816s) ==
+== Classifying image 21/83 ==
+== Finished image 21/83 (46.1136s) ==
+== Classifying image 22/83 ==
+== Finished image 22/83 (46.7715s) ==
+== Classifying image 23/83 ==
+Converged!
+== Finished image 23/83 (46.0475s) ==
+== Classifying image 24/83 ==
+Converged!
+== Finished image 24/83 (46.3572s) ==
+== Classifying image 25/83 ==
+== Finished image 25/83 (46.9594s) ==
+== Classifying image 26/83 ==
+== Finished image 26/83 (47.1773s) ==
+== Classifying image 27/83 ==
+== Finished image 27/83 (47.0459s) ==
+== Classifying image 28/83 ==
+Converged!
+== Finished image 28/83 (45.6264s) ==
+== Classifying image 29/83 ==
+== Finished image 29/83 (46.3306s) ==
+== Classifying image 30/83 ==
+== Finished image 30/83 (46.1549s) ==
+== Classifying image 31/83 ==
+== Finished image 31/83 (46.5429s) ==
+== Classifying image 32/83 ==
+== Finished image 32/83 (47.4039s) ==
+== Classifying image 33/83 ==
+Converged!
+== Finished image 33/83 (46.8054s) ==
+== Classifying image 34/83 ==
+== Finished image 34/83 (46.5164s) ==
+== Classifying image 35/83 ==
+== Finished image 35/83 (46.5189s) ==
+== Classifying image 36/83 ==
+== Finished image 36/83 (46.1237s) ==
+== Classifying image 37/83 ==
+== Finished image 37/83 (46.5448s) ==
+== Classifying image 38/83 ==
+== Finished image 38/83 (46.3448s) ==
+== Classifying image 39/83 ==
+== Finished image 39/83 (45.8782s) ==
+== Classifying image 40/83 ==
+== Finished image 40/83 (46.2925s) ==
+== Classifying image 41/83 ==
+== Finished image 41/83 (46.8412s) ==
+== Classifying image 42/83 ==
+== Finished image 42/83 (46.6280s) ==
+== Classifying image 43/83 ==
+== Finished image 43/83 (46.1056s) ==
+== Classifying image 44/83 ==
+== Finished image 44/83 (46.6306s) ==
+== Classifying image 45/83 ==
+Converged!
+== Finished image 45/83 (40.9343s) ==
+== Classifying image 46/83 ==
+== Finished image 46/83 (46.8151s) ==
+== Classifying image 47/83 ==
+Converged!
+Converged!
+Converged!
+== Finished image 47/83 (35.2187s) ==
+== Classifying image 48/83 ==
+== Finished image 48/83 (46.4397s) ==
+== Classifying image 49/83 ==
+== Finished image 49/83 (46.1933s) ==
+== Classifying image 50/83 ==
+== Finished image 50/83 (46.1043s) ==
+== Classifying image 51/83 ==
+Converged!
+== Finished image 51/83 (43.5693s) ==
+== Classifying image 52/83 ==
+== Finished image 52/83 (47.1370s) ==
+== Classifying image 53/83 ==
+== Finished image 53/83 (47.1985s) ==
+== Classifying image 54/83 ==
+Converged!
+== Finished image 54/83 (43.2525s) ==
+== Classifying image 55/83 ==
+== Finished image 55/83 (45.9680s) ==
+== Classifying image 56/83 ==
+Converged!
+== Finished image 56/83 (46.3719s) ==
+== Classifying image 57/83 ==
+Converged!
+== Finished image 57/83 (44.0407s) ==
+== Classifying image 58/83 ==
+Converged!
+== Finished image 58/83 (42.9588s) ==
+== Classifying image 59/83 ==
+Converged!
+== Finished image 59/83 (44.5218s) ==
+== Classifying image 60/83 ==
+== Finished image 60/83 (46.3178s) ==
+== Classifying image 61/83 ==
+== Finished image 61/83 (46.6776s) ==
+== Classifying image 62/83 ==
+== Finished image 62/83 (46.4767s) ==
+== Classifying image 63/83 ==
+== Finished image 63/83 (46.1007s) ==
+== Classifying image 64/83 ==
+== Finished image 64/83 (46.5922s) ==
+== Classifying image 65/83 ==
+Converged!
+== Finished image 65/83 (45.8804s) ==
+== Classifying image 66/83 ==
+== Finished image 66/83 (46.1077s) ==
+== Classifying image 67/83 ==
+Converged!
+== Finished image 67/83 (42.8155s) ==
+== Classifying image 68/83 ==
+Converged!
+Converged!
+== Finished image 68/83 (43.8817s) ==
+== Classifying image 69/83 ==
+Converged!
+== Finished image 69/83 (41.2106s) ==
+== Classifying image 70/83 ==
+Converged!
+== Finished image 70/83 (45.2125s) ==
+== Classifying image 71/83 ==
+== Finished image 71/83 (46.3711s) ==
+== Classifying image 72/83 ==
+== Finished image 72/83 (47.2183s) ==
+== Classifying image 73/83 ==
+== Finished image 73/83 (46.6094s) ==
+== Classifying image 74/83 ==
+== Finished image 74/83 (46.1482s) ==
+== Classifying image 75/83 ==
+== Finished image 75/83 (46.5117s) ==
+== Classifying image 76/83 ==
+Converged!
+== Finished image 76/83 (46.3771s) ==
+== Classifying image 77/83 ==
+Converged!
+== Finished image 77/83 (43.9932s) ==
+== Classifying image 78/83 ==
+Converged!
+== Finished image 78/83 (45.2503s) ==
+== Classifying image 79/83 ==
+Converged!
+== Finished image 79/83 (44.2324s) ==
+== Classifying image 80/83 ==
+== Finished image 80/83 (46.4734s) ==
+== Classifying image 81/83 ==
+== Finished image 81/83 (46.1723s) ==
+== Classifying image 82/83 ==
+== Finished image 82/83 (46.2912s) ==
+== Classifying image 83/83 ==
+== Finished image 83/83 (45.9121s) ==
+Done fitting. (3791.31s)
+Acc: 0.5181 (nb_pos: 43 nb_neg: 40)
+[Digit 2] Acc: 0.5476 (nb_pos: 23 nb_neg: 19)
+[Digit 3] Acc: 0.4878 (nb_pos: 20 nb_neg: 21)
+Done.
+Finished comb_i=3 (3791.7091s)
+==== GridSearch (4/8) ====
+N_0 is: 80
+PI_N is: 3.000000e-01
+C is: 1
+== Classifying image 1/83 ==
+== Finished image 1/83 (46.7858s) ==
+== Classifying image 2/83 ==
+== Finished image 2/83 (46.7609s) ==
+== Classifying image 3/83 ==
+== Finished image 3/83 (46.1651s) ==
+== Classifying image 4/83 ==
+== Finished image 4/83 (46.3203s) ==
+== Classifying image 5/83 ==
+== Finished image 5/83 (46.6267s) ==
+== Classifying image 6/83 ==
+Converged!
+== Finished image 6/83 (43.7454s) ==
+== Classifying image 7/83 ==
+== Finished image 7/83 (46.5983s) ==
+== Classifying image 8/83 ==
+== Finished image 8/83 (47.0749s) ==
+== Classifying image 9/83 ==
+== Finished image 9/83 (46.5089s) ==
+== Classifying image 10/83 ==
+== Finished image 10/83 (46.8486s) ==
+== Classifying image 11/83 ==
+== Finished image 11/83 (46.9929s) ==
+== Classifying image 12/83 ==
+Converged!
+== Finished image 12/83 (46.8414s) ==
+== Classifying image 13/83 ==
+== Finished image 13/83 (46.4942s) ==
+== Classifying image 14/83 ==
+== Finished image 14/83 (46.5656s) ==
+== Classifying image 15/83 ==
+== Finished image 15/83 (46.2772s) ==
+== Classifying image 16/83 ==
+== Finished image 16/83 (47.5227s) ==
+== Classifying image 17/83 ==
+== Finished image 17/83 (46.4115s) ==
+== Classifying image 18/83 ==
+== Finished image 18/83 (46.4264s) ==
+== Classifying image 19/83 ==
+== Finished image 19/83 (46.4234s) ==
+== Classifying image 20/83 ==
+== Finished image 20/83 (47.0778s) ==
+== Classifying image 21/83 ==
+== Finished image 21/83 (46.8767s) ==
+== Classifying image 22/83 ==
+== Finished image 22/83 (46.5131s) ==
+== Classifying image 23/83 ==
+== Finished image 23/83 (46.9838s) ==
+== Classifying image 24/83 ==
+== Finished image 24/83 (46.3141s) ==
+== Classifying image 25/83 ==
+Converged!
+== Finished image 25/83 (45.6522s) ==
+== Classifying image 26/83 ==
+== Finished image 26/83 (46.9891s) ==
+== Classifying image 27/83 ==
+== Finished image 27/83 (46.0836s) ==
+== Classifying image 28/83 ==
+== Finished image 28/83 (46.2103s) ==
+== Classifying image 29/83 ==
+== Finished image 29/83 (46.3997s) ==
+== Classifying image 30/83 ==
+Converged!
+== Finished image 30/83 (46.0513s) ==
+== Classifying image 31/83 ==
+== Finished image 31/83 (46.2769s) ==
+== Classifying image 32/83 ==
+== Finished image 32/83 (46.7272s) ==
+== Classifying image 33/83 ==
+== Finished image 33/83 (46.8130s) ==
+== Classifying image 34/83 ==
+== Finished image 34/83 (45.9833s) ==
+== Classifying image 35/83 ==
+== Finished image 35/83 (45.8996s) ==
+== Classifying image 36/83 ==
+== Finished image 36/83 (46.0510s) ==
+== Classifying image 37/83 ==
+Converged!
+== Finished image 37/83 (42.5666s) ==
+== Classifying image 38/83 ==
+== Finished image 38/83 (46.1155s) ==
+== Classifying image 39/83 ==
+== Finished image 39/83 (45.9274s) ==
+== Classifying image 40/83 ==
+== Finished image 40/83 (46.2514s) ==
+== Classifying image 41/83 ==
+== Finished image 41/83 (46.4204s) ==
+== Classifying image 42/83 ==
+Converged!
+== Finished image 42/83 (44.1124s) ==
+== Classifying image 43/83 ==
+== Finished image 43/83 (46.2090s) ==
+== Classifying image 44/83 ==
+== Finished image 44/83 (46.3971s) ==
+== Classifying image 45/83 ==
+== Finished image 45/83 (45.9434s) ==
+== Classifying image 46/83 ==
+== Finished image 46/83 (46.2173s) ==
+== Classifying image 47/83 ==
+== Finished image 47/83 (46.4054s) ==
+== Classifying image 48/83 ==
+== Finished image 48/83 (46.2823s) ==
+== Classifying image 49/83 ==
+Converged!
+== Finished image 49/83 (43.6248s) ==
+== Classifying image 50/83 ==
+== Finished image 50/83 (46.4035s) ==
+== Classifying image 51/83 ==
+== Finished image 51/83 (47.0588s) ==
+== Classifying image 52/83 ==
+== Finished image 52/83 (46.9178s) ==
+== Classifying image 53/83 ==
+== Finished image 53/83 (46.0349s) ==
+== Classifying image 54/83 ==
+== Finished image 54/83 (46.1690s) ==
+== Classifying image 55/83 ==
+== Finished image 55/83 (46.6002s) ==
+== Classifying image 56/83 ==
+== Finished image 56/83 (46.6179s) ==
+== Classifying image 57/83 ==
+== Finished image 57/83 (46.3235s) ==
+== Classifying image 58/83 ==
+Converged!
+== Finished image 58/83 (44.3350s) ==
+== Classifying image 59/83 ==
+Converged!
+== Finished image 59/83 (46.3492s) ==
+== Classifying image 60/83 ==
+== Finished image 60/83 (46.5403s) ==
+== Classifying image 61/83 ==
+== Finished image 61/83 (46.1546s) ==
+== Classifying image 62/83 ==
+== Finished image 62/83 (46.4274s) ==
+== Classifying image 63/83 ==
+== Finished image 63/83 (46.2603s) ==
+== Classifying image 64/83 ==
+Converged!
+== Finished image 64/83 (45.0047s) ==
+== Classifying image 65/83 ==
+== Finished image 65/83 (46.2987s) ==
+== Classifying image 66/83 ==
+== Finished image 66/83 (46.5524s) ==
+== Classifying image 67/83 ==
+== Finished image 67/83 (46.6707s) ==
+== Classifying image 68/83 ==
+Converged!
+== Finished image 68/83 (45.7468s) ==
+== Classifying image 69/83 ==
+== Finished image 69/83 (46.2246s) ==
+== Classifying image 70/83 ==
+Converged!
+== Finished image 70/83 (45.6369s) ==
+== Classifying image 71/83 ==
+== Finished image 71/83 (46.2073s) ==
+== Classifying image 72/83 ==
+== Finished image 72/83 (46.9071s) ==
+== Classifying image 73/83 ==
+Converged!
+== Finished image 73/83 (44.8483s) ==
+== Classifying image 74/83 ==
+== Finished image 74/83 (46.7318s) ==
+== Classifying image 75/83 ==
+== Finished image 75/83 (45.9919s) ==
+== Classifying image 76/83 ==
+== Finished image 76/83 (45.9724s) ==
+== Classifying image 77/83 ==
+== Finished image 77/83 (46.6618s) ==
+== Classifying image 78/83 ==
+== Finished image 78/83 (46.6090s) ==
+== Classifying image 79/83 ==
+== Finished image 79/83 (46.5059s) ==
+== Classifying image 80/83 ==
+== Finished image 80/83 (46.0157s) ==
+== Classifying image 81/83 ==
+== Finished image 81/83 (46.3988s) ==
+== Classifying image 82/83 ==
+== Finished image 82/83 (46.1397s) ==
+== Classifying image 83/83 ==
+== Finished image 83/83 (45.8286s) ==
+Done fitting. (3835.96s)
+Acc: 0.5904 (nb_pos: 49 nb_neg: 34)
+[Digit 2] Acc: 0.5476 (nb_pos: 23 nb_neg: 19)
+[Digit 3] Acc: 0.6341 (nb_pos: 26 nb_neg: 15)
+Done.
+Finished comb_i=4 (3836.3596s)
+==== GridSearch (5/8) ====
+N_0 is: 160
+PI_N is: 1.000000e-01
+C is: 1
+== Classifying image 1/83 ==
+== Finished image 1/83 (46.8374s) ==
+== Classifying image 2/83 ==
+Converged!
+== Finished image 2/83 (45.2578s) ==
+== Classifying image 3/83 ==
+== Finished image 3/83 (46.2854s) ==
+== Classifying image 4/83 ==
+Converged!
+== Finished image 4/83 (45.7964s) ==
+== Classifying image 5/83 ==
+== Finished image 5/83 (46.7151s) ==
+== Classifying image 6/83 ==
+== Finished image 6/83 (46.3058s) ==
+== Classifying image 7/83 ==
+Converged!
+== Finished image 7/83 (44.1156s) ==
+== Classifying image 8/83 ==
+== Finished image 8/83 (47.2497s) ==
+== Classifying image 9/83 ==
+== Finished image 9/83 (46.9116s) ==
+== Classifying image 10/83 ==
+== Finished image 10/83 (46.9568s) ==
+== Classifying image 11/83 ==
+Converged!
+== Finished image 11/83 (44.5140s) ==
+== Classifying image 12/83 ==
+== Finished image 12/83 (47.9127s) ==
+== Classifying image 13/83 ==
+Converged!
+== Finished image 13/83 (41.1532s) ==
+== Classifying image 14/83 ==
+Converged!
+== Finished image 14/83 (45.5007s) ==
+== Classifying image 15/83 ==
+Converged!
+== Finished image 15/83 (43.1926s) ==
+== Classifying image 16/83 ==
+== Finished image 16/83 (46.7956s) ==
+== Classifying image 17/83 ==
+== Finished image 17/83 (46.7700s) ==
+== Classifying image 18/83 ==
+== Finished image 18/83 (46.8985s) ==
+== Classifying image 19/83 ==
+== Finished image 19/83 (46.5111s) ==
+== Classifying image 20/83 ==
+Converged!
+== Finished image 20/83 (46.2581s) ==
+== Classifying image 21/83 ==
+== Finished image 21/83 (47.1244s) ==
+== Classifying image 22/83 ==
+== Finished image 22/83 (47.1519s) ==
+== Classifying image 23/83 ==
+== Finished image 23/83 (46.3685s) ==
+== Classifying image 24/83 ==
+== Finished image 24/83 (46.4140s) ==
+== Classifying image 25/83 ==
+== Finished image 25/83 (47.0344s) ==
+== Classifying image 26/83 ==
+== Finished image 26/83 (46.1940s) ==
+== Classifying image 27/83 ==
+Converged!
+== Finished image 27/83 (43.1336s) ==
+== Classifying image 28/83 ==
+== Finished image 28/83 (47.3335s) ==
+== Classifying image 29/83 ==
+== Finished image 29/83 (46.3449s) ==
+== Classifying image 30/83 ==
+== Finished image 30/83 (46.2012s) ==
+== Classifying image 31/83 ==
+== Finished image 31/83 (46.3007s) ==
+== Classifying image 32/83 ==
+Converged!
+== Finished image 32/83 (45.1429s) ==
+== Classifying image 33/83 ==
+== Finished image 33/83 (46.5722s) ==
+== Classifying image 34/83 ==
+Converged!
+== Finished image 34/83 (45.1613s) ==
+== Classifying image 35/83 ==
+== Finished image 35/83 (46.4540s) ==
+== Classifying image 36/83 ==
+== Finished image 36/83 (46.5132s) ==
+== Classifying image 37/83 ==
+Converged!
+== Finished image 37/83 (44.2860s) ==
+== Classifying image 38/83 ==
+Converged!
+== Finished image 38/83 (45.0435s) ==
+== Classifying image 39/83 ==
+Converged!
+== Finished image 39/83 (46.3109s) ==
+== Classifying image 40/83 ==
+== Finished image 40/83 (46.7413s) ==
+== Classifying image 41/83 ==
+== Finished image 41/83 (47.6584s) ==
+== Classifying image 42/83 ==
+== Finished image 42/83 (47.1817s) ==
+== Classifying image 43/83 ==
+Converged!
+== Finished image 43/83 (46.4373s) ==
+== Classifying image 44/83 ==
+== Finished image 44/83 (47.1544s) ==
+== Classifying image 45/83 ==
+Converged!
+== Finished image 45/83 (44.1485s) ==
+== Classifying image 46/83 ==
+Converged!
+== Finished image 46/83 (46.7003s) ==
+== Classifying image 47/83 ==
+== Finished image 47/83 (47.3399s) ==
+== Classifying image 48/83 ==
+== Finished image 48/83 (46.6450s) ==
+== Classifying image 49/83 ==
+== Finished image 49/83 (46.3249s) ==
+== Classifying image 50/83 ==
+== Finished image 50/83 (46.8006s) ==
+== Classifying image 51/83 ==
+== Finished image 51/83 (47.1046s) ==
+== Classifying image 52/83 ==
+== Finished image 52/83 (47.0741s) ==
+== Classifying image 53/83 ==
+== Finished image 53/83 (47.0050s) ==
+== Classifying image 54/83 ==
+== Finished image 54/83 (46.3204s) ==
+== Classifying image 55/83 ==
+== Finished image 55/83 (46.4235s) ==
+== Classifying image 56/83 ==
+== Finished image 56/83 (47.0184s) ==
+== Classifying image 57/83 ==
+Converged!
+== Finished image 57/83 (46.4507s) ==
+== Classifying image 58/83 ==
+Converged!
+== Finished image 58/83 (42.7779s) ==
+== Classifying image 59/83 ==
+== Finished image 59/83 (46.2911s) ==
+== Classifying image 60/83 ==
+== Finished image 60/83 (46.8111s) ==
+== Classifying image 61/83 ==
+== Finished image 61/83 (46.5973s) ==
+== Classifying image 62/83 ==
+== Finished image 62/83 (46.5249s) ==
+== Classifying image 63/83 ==
+Converged!
+== Finished image 63/83 (44.3755s) ==
+== Classifying image 64/83 ==
+== Finished image 64/83 (47.0486s) ==
+== Classifying image 65/83 ==
+Converged!
+== Finished image 65/83 (46.4636s) ==
+== Classifying image 66/83 ==
+Converged!
+== Finished image 66/83 (43.1691s) ==
+== Classifying image 67/83 ==
+Converged!
+== Finished image 67/83 (46.6742s) ==
+== Classifying image 68/83 ==
+Converged!
+== Finished image 68/83 (46.4118s) ==
+== Classifying image 69/83 ==
+Converged!
+== Finished image 69/83 (41.4217s) ==
+== Classifying image 70/83 ==
+== Finished image 70/83 (46.4598s) ==
+== Classifying image 71/83 ==
+Converged!
+== Finished image 71/83 (43.6608s) ==
+== Classifying image 72/83 ==
+== Finished image 72/83 (46.4811s) ==
+== Classifying image 73/83 ==
+== Finished image 73/83 (46.5837s) ==
+== Classifying image 74/83 ==
+Converged!
+== Finished image 74/83 (45.7497s) ==
+== Classifying image 75/83 ==
+== Finished image 75/83 (47.0059s) ==
+== Classifying image 76/83 ==
+== Finished image 76/83 (46.8957s) ==
+== Classifying image 77/83 ==
+== Finished image 77/83 (46.2746s) ==
+== Classifying image 78/83 ==
+== Finished image 78/83 (45.8300s) ==
+== Classifying image 79/83 ==
+Converged!
+Converged!
+== Finished image 79/83 (38.9835s) ==
+== Classifying image 80/83 ==
+== Finished image 80/83 (46.4273s) ==
+== Classifying image 81/83 ==
+== Finished image 81/83 (46.3402s) ==
+== Classifying image 82/83 ==
+== Finished image 82/83 (46.5255s) ==
+== Classifying image 83/83 ==
+== Finished image 83/83 (45.9708s) ==
+Done fitting. (3817.37s)
+Acc: 0.5904 (nb_pos: 49 nb_neg: 34)
+[Digit 2] Acc: 0.4524 (nb_pos: 19 nb_neg: 23)
+[Digit 3] Acc: 0.7317 (nb_pos: 30 nb_neg: 11)
+Done.
+Finished comb_i=5 (3817.7595s)
+==== GridSearch (6/8) ====
+N_0 is: 160
+PI_N is: 3.000000e-01
+C is: 1
+== Classifying image 1/83 ==
+== Finished image 1/83 (46.3510s) ==
+== Classifying image 2/83 ==
+== Finished image 2/83 (46.9450s) ==
+== Classifying image 3/83 ==
+== Finished image 3/83 (46.6599s) ==
+== Classifying image 4/83 ==
+Converged!
+== Finished image 4/83 (45.7919s) ==
+== Classifying image 5/83 ==
+== Finished image 5/83 (46.4511s) ==
+== Classifying image 6/83 ==
+== Finished image 6/83 (46.6371s) ==
+== Classifying image 7/83 ==
+== Finished image 7/83 (46.4873s) ==
+== Classifying image 8/83 ==
+== Finished image 8/83 (46.9190s) ==
+== Classifying image 9/83 ==
+== Finished image 9/83 (47.0260s) ==
+== Classifying image 10/83 ==
+Converged!
+== Finished image 10/83 (41.7780s) ==
+== Classifying image 11/83 ==
+Converged!
+== Finished image 11/83 (47.0038s) ==
+== Classifying image 12/83 ==
+== Finished image 12/83 (47.2524s) ==
+== Classifying image 13/83 ==
+== Finished image 13/83 (47.4295s) ==
+== Classifying image 14/83 ==
+== Finished image 14/83 (46.4649s) ==
+== Classifying image 15/83 ==
+== Finished image 15/83 (46.7156s) ==
+== Classifying image 16/83 ==
+== Finished image 16/83 (47.2628s) ==
+== Classifying image 17/83 ==
+== Finished image 17/83 (46.6587s) ==
+== Classifying image 18/83 ==
+== Finished image 18/83 (47.0399s) ==
+== Classifying image 19/83 ==
+== Finished image 19/83 (46.6028s) ==
+== Classifying image 20/83 ==
+== Finished image 20/83 (46.2365s) ==
+== Classifying image 21/83 ==
+Converged!
+== Finished image 21/83 (46.4641s) ==
+== Classifying image 22/83 ==
+== Finished image 22/83 (45.7446s) ==
+== Classifying image 23/83 ==
+Converged!
+== Finished image 23/83 (43.5813s) ==
+== Classifying image 24/83 ==
+== Finished image 24/83 (46.9561s) ==
+== Classifying image 25/83 ==
+Converged!
+== Finished image 25/83 (42.8229s) ==
+== Classifying image 26/83 ==
+== Finished image 26/83 (46.5092s) ==
+== Classifying image 27/83 ==
+== Finished image 27/83 (46.6508s) ==
+== Classifying image 28/83 ==
+Converged!
+== Finished image 28/83 (45.8617s) ==
+== Classifying image 29/83 ==
+== Finished image 29/83 (46.0997s) ==
+== Classifying image 30/83 ==
+== Finished image 30/83 (46.2436s) ==
+== Classifying image 31/83 ==
+== Finished image 31/83 (46.0995s) ==
+== Classifying image 32/83 ==
+Converged!
+== Finished image 32/83 (46.2134s) ==
+== Classifying image 33/83 ==
+== Finished image 33/83 (47.3171s) ==
+== Classifying image 34/83 ==
+Converged!
+== Finished image 34/83 (46.4498s) ==
+== Classifying image 35/83 ==
+== Finished image 35/83 (47.0178s) ==
+== Classifying image 36/83 ==
+== Finished image 36/83 (46.7999s) ==
+== Classifying image 37/83 ==
+Converged!
+== Finished image 37/83 (42.8783s) ==
+== Classifying image 38/83 ==
+== Finished image 38/83 (46.3176s) ==
+== Classifying image 39/83 ==
+== Finished image 39/83 (46.4872s) ==
+== Classifying image 40/83 ==
+== Finished image 40/83 (46.3212s) ==
+== Classifying image 41/83 ==
+== Finished image 41/83 (46.6896s) ==
+== Classifying image 42/83 ==
+== Finished image 42/83 (46.9767s) ==
+== Classifying image 43/83 ==
+== Finished image 43/83 (46.2115s) ==
+== Classifying image 44/83 ==
+== Finished image 44/83 (46.6729s) ==
+== Classifying image 45/83 ==
+== Finished image 45/83 (47.0389s) ==
+== Classifying image 46/83 ==
+Converged!
+== Finished image 46/83 (44.2400s) ==
+== Classifying image 47/83 ==
+Converged!
+== Finished image 47/83 (45.8020s) ==
+== Classifying image 48/83 ==
+== Finished image 48/83 (46.7518s) ==
+== Classifying image 49/83 ==
+== Finished image 49/83 (46.1274s) ==
+== Classifying image 50/83 ==
+Converged!
+== Finished image 50/83 (46.0206s) ==
+== Classifying image 51/83 ==
+== Finished image 51/83 (47.4823s) ==
+== Classifying image 52/83 ==
+== Finished image 52/83 (46.4637s) ==
+== Classifying image 53/83 ==
+== Finished image 53/83 (46.0914s) ==
+== Classifying image 54/83 ==
+== Finished image 54/83 (45.9754s) ==
+== Classifying image 55/83 ==
+== Finished image 55/83 (46.3146s) ==
+== Classifying image 56/83 ==
+Converged!
+== Finished image 56/83 (46.1413s) ==
+== Classifying image 57/83 ==
+== Finished image 57/83 (46.0958s) ==
+== Classifying image 58/83 ==
+Converged!
+== Finished image 58/83 (44.0895s) ==
+== Classifying image 59/83 ==
+Converged!
+== Finished image 59/83 (46.0645s) ==
+== Classifying image 60/83 ==
+== Finished image 60/83 (46.4554s) ==
+== Classifying image 61/83 ==
+== Finished image 61/83 (46.2219s) ==
+== Classifying image 62/83 ==
+== Finished image 62/83 (46.9454s) ==
+== Classifying image 63/83 ==
+== Finished image 63/83 (47.0800s) ==
+== Classifying image 64/83 ==
+== Finished image 64/83 (46.4643s) ==
+== Classifying image 65/83 ==
+== Finished image 65/83 (46.1154s) ==
+== Classifying image 66/83 ==
+== Finished image 66/83 (46.7487s) ==
+== Classifying image 67/83 ==
+== Finished image 67/83 (46.6446s) ==
+== Classifying image 68/83 ==
+Converged!
+== Finished image 68/83 (41.8719s) ==
+== Classifying image 69/83 ==
+== Finished image 69/83 (46.1574s) ==
+== Classifying image 70/83 ==
+== Finished image 70/83 (46.5166s) ==
+== Classifying image 71/83 ==
+== Finished image 71/83 (47.0876s) ==
+== Classifying image 72/83 ==
+== Finished image 72/83 (46.6964s) ==
+== Classifying image 73/83 ==
+Converged!
+== Finished image 73/83 (45.5029s) ==
+== Classifying image 74/83 ==
+== Finished image 74/83 (46.2646s) ==
+== Classifying image 75/83 ==
+== Finished image 75/83 (46.1540s) ==
+== Classifying image 76/83 ==
+== Finished image 76/83 (46.4495s) ==
+== Classifying image 77/83 ==
+== Finished image 77/83 (46.7592s) ==
+== Classifying image 78/83 ==
+Converged!
+== Finished image 78/83 (45.8645s) ==
+== Classifying image 79/83 ==
+== Finished image 79/83 (46.5259s) ==
+== Classifying image 80/83 ==
+== Finished image 80/83 (46.6307s) ==
+== Classifying image 81/83 ==
+== Finished image 81/83 (46.2023s) ==
+== Classifying image 82/83 ==
+== Finished image 82/83 (46.7817s) ==
+== Classifying image 83/83 ==
+== Finished image 83/83 (46.2987s) ==
+Done fitting. (3836.29s)
+Acc: 0.5542 (nb_pos: 46 nb_neg: 37)
+[Digit 2] Acc: 0.5238 (nb_pos: 22 nb_neg: 20)
+[Digit 3] Acc: 0.5854 (nb_pos: 24 nb_neg: 17)
+Done.
+Finished comb_i=6 (3836.6843s)
+==== GridSearch (7/8) ====
+N_0 is: 360
+PI_N is: 1.000000e-01
+C is: 1
+== Classifying image 1/83 ==
+== Finished image 1/83 (46.9660s) ==
+== Classifying image 2/83 ==
+Converged!
+== Finished image 2/83 (44.2619s) ==
+== Classifying image 3/83 ==
+Converged!
+== Finished image 3/83 (45.3073s) ==
+== Classifying image 4/83 ==
+== Finished image 4/83 (47.2297s) ==
+== Classifying image 5/83 ==
+== Finished image 5/83 (46.5378s) ==
+== Classifying image 6/83 ==
+== Finished image 6/83 (46.6125s) ==
+== Classifying image 7/83 ==
+== Finished image 7/83 (46.9854s) ==
+== Classifying image 8/83 ==
+Converged!
+== Finished image 8/83 (43.3795s) ==
+== Classifying image 9/83 ==
+== Finished image 9/83 (46.7215s) ==
+== Classifying image 10/83 ==
+== Finished image 10/83 (47.2619s) ==
+== Classifying image 11/83 ==
+Converged!
+== Finished image 11/83 (45.0268s) ==
+== Classifying image 12/83 ==
+Converged!
+== Finished image 12/83 (43.5154s) ==
+== Classifying image 13/83 ==
+Converged!
+== Finished image 13/83 (44.9127s) ==
+== Classifying image 14/83 ==
+== Finished image 14/83 (46.6859s) ==
+== Classifying image 15/83 ==
+== Finished image 15/83 (47.1189s) ==
+== Classifying image 16/83 ==
+== Finished image 16/83 (46.5040s) ==
+== Classifying image 17/83 ==
+== Finished image 17/83 (47.0573s) ==
+== Classifying image 18/83 ==
+== Finished image 18/83 (46.5685s) ==
+== Classifying image 19/83 ==
+== Finished image 19/83 (46.0174s) ==
+== Classifying image 20/83 ==
+== Finished image 20/83 (46.8052s) ==
+== Classifying image 21/83 ==
+Converged!
+== Finished image 21/83 (43.6801s) ==
+== Classifying image 22/83 ==
+== Finished image 22/83 (46.7568s) ==
+== Classifying image 23/83 ==
+== Finished image 23/83 (46.4802s) ==
+== Classifying image 24/83 ==
+== Finished image 24/83 (46.7024s) ==
+== Classifying image 25/83 ==
+Converged!
+Converged!
+== Finished image 25/83 (43.8625s) ==
+== Classifying image 26/83 ==
+Converged!
+== Finished image 26/83 (46.1781s) ==
+== Classifying image 27/83 ==
+Converged!
+== Finished image 27/83 (45.6630s) ==
+== Classifying image 28/83 ==
+Converged!
+== Finished image 28/83 (44.6328s) ==
+== Classifying image 29/83 ==
+== Finished image 29/83 (46.6156s) ==
+== Classifying image 30/83 ==
+Converged!
+== Finished image 30/83 (43.0151s) ==
+== Classifying image 31/83 ==
+== Finished image 31/83 (46.7499s) ==
+== Classifying image 32/83 ==
+== Finished image 32/83 (46.8275s) ==
+== Classifying image 33/83 ==
+== Finished image 33/83 (46.3539s) ==
+== Classifying image 34/83 ==
+== Finished image 34/83 (46.9717s) ==
+== Classifying image 35/83 ==
+== Finished image 35/83 (47.1422s) ==
+== Classifying image 36/83 ==
+Converged!
+== Finished image 36/83 (45.5894s) ==
+== Classifying image 37/83 ==
+Converged!
+== Finished image 37/83 (43.9353s) ==
+== Classifying image 38/83 ==
+Converged!
+== Finished image 38/83 (45.4755s) ==
+== Classifying image 39/83 ==
+== Finished image 39/83 (46.7998s) ==
+== Classifying image 40/83 ==
+== Finished image 40/83 (46.7324s) ==
+== Classifying image 41/83 ==
+== Finished image 41/83 (47.2898s) ==
+== Classifying image 42/83 ==
+== Finished image 42/83 (46.8887s) ==
+== Classifying image 43/83 ==
+== Finished image 43/83 (46.9226s) ==
+== Classifying image 44/83 ==
+== Finished image 44/83 (47.4487s) ==
+== Classifying image 45/83 ==
+Converged!
+Converged!
+== Finished image 45/83 (42.3317s) ==
+== Classifying image 46/83 ==
+== Finished image 46/83 (47.0397s) ==
+== Classifying image 47/83 ==
+== Finished image 47/83 (46.4499s) ==
+== Classifying image 48/83 ==
+== Finished image 48/83 (46.4661s) ==
+== Classifying image 49/83 ==
+== Finished image 49/83 (46.2236s) ==
+== Classifying image 50/83 ==
+== Finished image 50/83 (46.7015s) ==
+== Classifying image 51/83 ==
+== Finished image 51/83 (46.8291s) ==
+== Classifying image 52/83 ==
+Converged!
+== Finished image 52/83 (47.4433s) ==
+== Classifying image 53/83 ==
+== Finished image 53/83 (46.5970s) ==
+== Classifying image 54/83 ==
+Converged!
+== Finished image 54/83 (43.6122s) ==
+== Classifying image 55/83 ==
+== Finished image 55/83 (46.5067s) ==
+== Classifying image 56/83 ==
+Converged!
+== Finished image 56/83 (44.7929s) ==
+== Classifying image 57/83 ==
+== Finished image 57/83 (46.4097s) ==
+== Classifying image 58/83 ==
+Converged!
+== Finished image 58/83 (43.4495s) ==
+== Classifying image 59/83 ==
+Converged!
+== Finished image 59/83 (43.4797s) ==
+== Classifying image 60/83 ==
+== Finished image 60/83 (46.5161s) ==
+== Classifying image 61/83 ==
+== Finished image 61/83 (46.5684s) ==
+== Classifying image 62/83 ==
+Converged!
+== Finished image 62/83 (43.4203s) ==
+== Classifying image 63/83 ==
+Converged!
+== Finished image 63/83 (46.7796s) ==
+== Classifying image 64/83 ==
+== Finished image 64/83 (47.0001s) ==
+== Classifying image 65/83 ==
+== Finished image 65/83 (46.5571s) ==
+== Classifying image 66/83 ==
+Converged!
+Converged!
+== Finished image 66/83 (37.3822s) ==
+== Classifying image 67/83 ==
+== Finished image 67/83 (46.9670s) ==
+== Classifying image 68/83 ==
+== Finished image 68/83 (46.9683s) ==
+== Classifying image 69/83 ==
+== Finished image 69/83 (46.9660s) ==
+== Classifying image 70/83 ==
+Converged!
+== Finished image 70/83 (44.4283s) ==
+== Classifying image 71/83 ==
+Converged!
+== Finished image 71/83 (44.4604s) ==
+== Classifying image 72/83 ==
+== Finished image 72/83 (46.4702s) ==
+== Classifying image 73/83 ==
+== Finished image 73/83 (46.9642s) ==
+== Classifying image 74/83 ==
+== Finished image 74/83 (46.8826s) ==
+== Classifying image 75/83 ==
+== Finished image 75/83 (46.9737s) ==
+== Classifying image 76/83 ==
+Converged!
+Converged!
+== Finished image 76/83 (44.0402s) ==
+== Classifying image 77/83 ==
+== Finished image 77/83 (46.2779s) ==
+== Classifying image 78/83 ==
+Converged!
+== Finished image 78/83 (46.9006s) ==
+== Classifying image 79/83 ==
+Converged!
+== Finished image 79/83 (43.7610s) ==
+== Classifying image 80/83 ==
+== Finished image 80/83 (47.2570s) ==
+== Classifying image 81/83 ==
+== Finished image 81/83 (46.5301s) ==
+== Classifying image 82/83 ==
+== Finished image 82/83 (46.9003s) ==
+== Classifying image 83/83 ==
+== Finished image 83/83 (46.6239s) ==
+Done fitting. (3810.17s)
+Acc: 0.5181 (nb_pos: 43 nb_neg: 40)
+[Digit 2] Acc: 0.5000 (nb_pos: 21 nb_neg: 21)
+[Digit 3] Acc: 0.5366 (nb_pos: 22 nb_neg: 19)
+Done.
+Finished comb_i=7 (3810.5671s)
+==== GridSearch (8/8) ====
+N_0 is: 360
+PI_N is: 3.000000e-01
+C is: 1
+== Classifying image 1/83 ==
+== Finished image 1/83 (47.0524s) ==
+== Classifying image 2/83 ==
+== Finished image 2/83 (47.2638s) ==
+== Classifying image 3/83 ==
+== Finished image 3/83 (46.7255s) ==
+== Classifying image 4/83 ==
+== Finished image 4/83 (46.7195s) ==
+== Classifying image 5/83 ==
+== Finished image 5/83 (46.6880s) ==
+== Classifying image 6/83 ==
+== Finished image 6/83 (47.2014s) ==
+== Classifying image 7/83 ==
+== Finished image 7/83 (46.9277s) ==
+== Classifying image 8/83 ==
+== Finished image 8/83 (46.6780s) ==
+== Classifying image 9/83 ==
+== Finished image 9/83 (46.5109s) ==
+== Classifying image 10/83 ==
+== Finished image 10/83 (46.6314s) ==
+== Classifying image 11/83 ==
+== Finished image 11/83 (46.8680s) ==
+== Classifying image 12/83 ==
+== Finished image 12/83 (47.2889s) ==
+== Classifying image 13/83 ==
+== Finished image 13/83 (47.2803s) ==
+== Classifying image 14/83 ==
+== Finished image 14/83 (46.2435s) ==
+== Classifying image 15/83 ==
+== Finished image 15/83 (46.5945s) ==
+== Classifying image 16/83 ==
+== Finished image 16/83 (46.9906s) ==
+== Classifying image 17/83 ==
+== Finished image 17/83 (46.4427s) ==
+== Classifying image 18/83 ==
+== Finished image 18/83 (46.3897s) ==
+== Classifying image 19/83 ==
+== Finished image 19/83 (46.5953s) ==
+== Classifying image 20/83 ==
+Converged!
+== Finished image 20/83 (44.4822s) ==
+== Classifying image 21/83 ==
+Converged!
+== Finished image 21/83 (45.7062s) ==
+== Classifying image 22/83 ==
+== Finished image 22/83 (46.6072s) ==
+== Classifying image 23/83 ==
+Converged!
+== Finished image 23/83 (43.5346s) ==
+== Classifying image 24/83 ==
+== Finished image 24/83 (47.0320s) ==
+== Classifying image 25/83 ==
+== Finished image 25/83 (47.0007s) ==
+== Classifying image 26/83 ==
+== Finished image 26/83 (46.0250s) ==
+== Classifying image 27/83 ==
+== Finished image 27/83 (46.6055s) ==
+== Classifying image 28/83 ==
+== Finished image 28/83 (47.0393s) ==
+== Classifying image 29/83 ==
+== Finished image 29/83 (47.0713s) ==
+== Classifying image 30/83 ==
+Converged!
+== Finished image 30/83 (45.5040s) ==
+== Classifying image 31/83 ==
+== Finished image 31/83 (46.6998s) ==
+== Classifying image 32/83 ==
+Converged!
+== Finished image 32/83 (46.5502s) ==
+== Classifying image 33/83 ==
+== Finished image 33/83 (46.3538s) ==
+== Classifying image 34/83 ==
+== Finished image 34/83 (46.6933s) ==
+== Classifying image 35/83 ==
+Converged!
+== Finished image 35/83 (45.9515s) ==
+== Classifying image 36/83 ==
+== Finished image 36/83 (46.4242s) ==
+== Classifying image 37/83 ==
+Converged!
+== Finished image 37/83 (42.1254s) ==
+== Classifying image 38/83 ==
+Converged!
+== Finished image 38/83 (43.9934s) ==
+== Classifying image 39/83 ==
+== Finished image 39/83 (46.3980s) ==
+== Classifying image 40/83 ==
+== Finished image 40/83 (46.8768s) ==
+== Classifying image 41/83 ==
+Converged!
+== Finished image 41/83 (45.4685s) ==
+== Classifying image 42/83 ==
+Converged!
+== Finished image 42/83 (45.2187s) ==
+== Classifying image 43/83 ==
+== Finished image 43/83 (46.7796s) ==
+== Classifying image 44/83 ==
+== Finished image 44/83 (46.5743s) ==
+== Classifying image 45/83 ==
+== Finished image 45/83 (46.8775s) ==
+== Classifying image 46/83 ==
+== Finished image 46/83 (46.6991s) ==
+== Classifying image 47/83 ==
+Converged!
+== Finished image 47/83 (46.0987s) ==
+== Classifying image 48/83 ==
+== Finished image 48/83 (46.9340s) ==
+== Classifying image 49/83 ==
+== Finished image 49/83 (46.0275s) ==
+== Classifying image 50/83 ==
+Converged!
+== Finished image 50/83 (45.1502s) ==
+== Classifying image 51/83 ==
+== Finished image 51/83 (47.2239s) ==
+== Classifying image 52/83 ==
+== Finished image 52/83 (46.5884s) ==
+== Classifying image 53/83 ==
+== Finished image 53/83 (46.9980s) ==
+== Classifying image 54/83 ==
+== Finished image 54/83 (46.3928s) ==
+== Classifying image 55/83 ==
+== Finished image 55/83 (46.1614s) ==
+== Classifying image 56/83 ==
+== Finished image 56/83 (46.7600s) ==
+== Classifying image 57/83 ==
+== Finished image 57/83 (46.8139s) ==
+== Classifying image 58/83 ==
+Converged!
+== Finished image 58/83 (44.1581s) ==
+== Classifying image 59/83 ==
+== Finished image 59/83 (46.1784s) ==
+== Classifying image 60/83 ==
+== Finished image 60/83 (46.6471s) ==
+== Classifying image 61/83 ==
+== Finished image 61/83 (46.6572s) ==
+== Classifying image 62/83 ==
+== Finished image 62/83 (47.2769s) ==
+== Classifying image 63/83 ==
+== Finished image 63/83 (45.9167s) ==
+== Classifying image 64/83 ==
+== Finished image 64/83 (46.4974s) ==
+== Classifying image 65/83 ==
+== Finished image 65/83 (46.2984s) ==
+== Classifying image 66/83 ==
+== Finished image 66/83 (46.8804s) ==
+== Classifying image 67/83 ==
+== Finished image 67/83 (47.0954s) ==
+== Classifying image 68/83 ==
+Converged!
+== Finished image 68/83 (45.4324s) ==
+== Classifying image 69/83 ==
+== Finished image 69/83 (46.3562s) ==
+== Classifying image 70/83 ==
+== Finished image 70/83 (46.5899s) ==
+== Classifying image 71/83 ==
+== Finished image 71/83 (47.2992s) ==
+== Classifying image 72/83 ==
+== Finished image 72/83 (46.3580s) ==
+== Classifying image 73/83 ==
+== Finished image 73/83 (45.9580s) ==
+== Classifying image 74/83 ==
+== Finished image 74/83 (46.2273s) ==
+== Classifying image 75/83 ==
+== Finished image 75/83 (46.2644s) ==
+== Classifying image 76/83 ==
+== Finished image 76/83 (46.7524s) ==
+== Classifying image 77/83 ==
+== Finished image 77/83 (46.1368s) ==
+== Classifying image 78/83 ==
+== Finished image 78/83 (46.8865s) ==
+== Classifying image 79/83 ==
+== Finished image 79/83 (46.7392s) ==
+== Classifying image 80/83 ==
+== Finished image 80/83 (47.0334s) ==
+== Classifying image 81/83 ==
+== Finished image 81/83 (46.9489s) ==
+== Classifying image 82/83 ==
+== Finished image 82/83 (46.4615s) ==
+== Classifying image 83/83 ==
+== Finished image 83/83 (47.0220s) ==
+Done fitting. (3850.66s)
+Acc: 0.5542 (nb_pos: 46 nb_neg: 37)
+[Digit 2] Acc: 0.4762 (nb_pos: 20 nb_neg: 22)
+[Digit 3] Acc: 0.6341 (nb_pos: 26 nb_neg: 15)
+Done.
+Finished comb_i=8 (3851.0520s)
+Finished gridsearch (30538.9454s)
+Saved results to: gs_08-Dec-2014 22:26:02/gs_results.mat
