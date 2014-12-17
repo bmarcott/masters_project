@@ -44,7 +44,7 @@ for iter_var=1:size(anneal_sched, 1)
     [bs, Bs] = compute_bead_locs(xs_est', N_B); % in img frame
     [rs, norm_terms] = compute_rs(I, inked, bs, var_b, pi_n, N_B);
     E_def = compute_E_def(xs_est, cs_home, A, t);
-    E_fit = compute_E_fit(rs, norm_terms, N_0, N_B);
+    E_fit = compute_E_fit(rs, norm_terms, N_0, N_I);
     E_tot = C*E_def + E_fit;
     E_tots = [E_tots E_tot];
     %% Perform alternating minimization (via EM steps)
@@ -68,7 +68,7 @@ for iter_var=1:size(anneal_sched, 1)
         % Update affine trans. A,t by minimizing E_def while keeping x_new fixed
         [A, t] = min_E_def(cs_new, cs_home);
         E_def = compute_E_def(xs_est, cs_home, A, t);
-        E_fit = compute_E_fit(rs, norm_terms, N_0, N_B);
+        E_fit = compute_E_fit(rs, norm_terms, N_0, N_I);
         %% Update intermeds
         intermeds = [intermeds {{xs_est, A, t, E_def, E_fit, N_B}}];
         %% Check stopping criterion

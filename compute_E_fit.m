@@ -6,7 +6,7 @@ function E_fit = compute_E_fit(rs, norm_terms, N_0, N_B)
 %  int N_0:
 %    "standard" nb. of inked pixels.
 %  int N_B:
-%    Nb. of beads.
+%    Nb. of inked pixels.
 %OUTPUT
 %  float E_fit:
 % pg. 31: 
