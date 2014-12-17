@@ -167,14 +167,14 @@ for i = 1 : length(params_pred) % for each image
     E_def = params_pred{i}{4};
     E_fit = params_pred{i}{5};
     intermeds = intermedss{i};
-    ps = models{i}{2}';
     Ip = imgs_p(:,:,i);
-    visualize_model(Ip, xs, ps', A, t, 10);
+%     visualize_model(Ip, xs, ps', A, t, 10);
     suptitle(sprintf('E_tot: %.2f E_def: %.2f E_fit: %.2f', ...
     E_def+E_fit, E_def, E_fit));
     % Animate iterative process
-    figure;
+    h = figure;
     for model_ind=1:length(intermeds) % for each digit/model
+        ps = models{model_ind}{2}';
         intermed_mdl = intermeds{model_ind}; 
         for step_i=1:length(intermed_mdl); % for each step/iter
             xs_i = intermed_mdl{step_i}{1};
