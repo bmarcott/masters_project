@@ -6,7 +6,7 @@ function [bs, Ms] = compute_bead_locs(cs, N_B)
 %    Nb. of beads.
 %OUTPUT
 %  matrix bs: [2 x N_B]
-%    Contains the bead locations.
+%    Contains the bead locations. Cols are xy coords.
 %  matrix Ms: [N_B x 2 x 2n]
 %    Contains the [2 x 2n] matrices that map spline ctrl pts to bead locs.
 n = size(cs, 1);
