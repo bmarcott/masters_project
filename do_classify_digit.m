@@ -1,7 +1,7 @@
 %% Read Images
 trainingImagePath = 'mnist/train-images.idx3-ubyte';
 trainingLabelPath = 'mnist/train-labels.idx1-ubyte';
-numToTrain = 400;
+numImagesToRead = 400;
 offset = 0;
 
 %inds_2 = [6, 17, 26, 29, 77, 83, 110, 118, 121, 123, 144];
@@ -15,7 +15,7 @@ offset = 0;
 
 %inds_imgs = [8];
 
-[imgs, labels] = readMNIST(trainingImagePath, trainingLabelPath, numToTrain, offset);
+[imgs, labels] = readMNIST(trainingImagePath, trainingLabelPath, numImagesToRead, offset);
 inds_2 = find(labels==2)';
 inds_3 = find(labels==3)';
 inds_imgs = [inds_2, inds_3];
@@ -139,7 +139,7 @@ for i=1:length(inds_imgs)
     hfigs = [];
     for dig_i=1:length(models)
         intermeds_dig = intermeds{dig_i}; % intermeds for digit dig_i
-        xs = intermeds_dig{end}{1};
+        xs = intermeds_dig{end}{1};  
         A = intermeds_dig{end}{2};
         t = intermeds_dig{end}{3};
         E_def = intermeds_dig{end}{4};

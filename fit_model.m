@@ -44,15 +44,21 @@ for iter_var=1:size(anneal_sched, 1)
     [bs, Bs] = compute_bead_locs(xs_est', N_B); % in img frame
     [rs, norm_terms] = compute_rs(I, inked, bs, var_b, pi_n, N_B);
     E_def = compute_E_def(xs_est, cs_home, A, t);
-    E_fit = compute_E_fit(rs, norm_terms, N_0, N_I);
+    E_fit = compute_E_fit(rs, norm_terms, pi_n, N_0, N_I);
     E_tot = C*E_def + E_fit;
     E_tots = [E_tots E_tot];
     %% Perform alternating minimization (via EM steps)
     for iter_inner=1:max_inner_iters
+                
         [bs, Bs] = compute_bead_locs(xs_est', N_B); % in img frame
         %% E-step
         % Evaluate responsiblity of each bead for each pixel
         [rs, norm_terms] = compute_rs(I, inked, bs, var_b, pi_n, N_B);
+        
+        E_def_before_1 = compute_E_def(xs_est, cs_home, A, t);
+        E_fit_before_1 = compute_E_fit(rs, norm_terms, pi_n, N_0, N_I);
+        E_tot_p_before_1 = C*E_def_before_1 + E_fit_before_1;
+        
         %% M-step (part 1)
         % Update control point locations xs_est
         % (1) Compute M_def, b_def (see pg. 76)
@@ -64,11 +70,20 @@ for iter_var=1:size(anneal_sched, 1)
         b = (C*b_def + b_fit);
         cs_new = (M\b); % stacked (x,y) coords. In image coords. M*cs = b
         xs_est = reshape(cs_new, [2, nb_c]);
+        
+        [bs, Bs] = compute_bead_locs(xs_est', N_B); % in img frame
+        [rs, norm_terms] = compute_rs(I, inked, bs, var_b, pi_n, N_B);
+        E_def_after_1 = compute_E_def(xs_est, cs_home, A, t);
+        E_fit_after_1 = compute_E_fit(rs, norm_terms, pi_n, N_0, N_I);
+        E_tot_p_after_1 = C*E_def_after_1 + E_fit_after_1;
+        
+        
         %% M-step (part 2)
         % Update affine trans. A,t by minimizing E_def while keeping x_new fixed
         [A, t] = min_E_def(cs_new, cs_home);
+        
         E_def = compute_E_def(xs_est, cs_home, A, t);
-        E_fit = compute_E_fit(rs, norm_terms, N_0, N_I);
+        E_fit = compute_E_fit(rs, norm_terms, pi_n, N_0, N_I);
         %% Update intermeds
         intermeds = [intermeds {{xs_est, A, t, E_def, E_fit, N_B}}];
         %% Check stopping criterion
@@ -76,6 +91,11 @@ for iter_var=1:size(anneal_sched, 1)
         delt = E_tot_p - E_tot;
         E_tot = E_tot_p;
         E_tots = [E_tots E_tot];
+        
+        E_compare = [E_def_before_1, E_fit_before_1, E_tot_p_before_1; ...
+                     E_def_after_1, E_fit_after_1, E_tot_p_after_1; ...
+                     E_def, E_fit, E_tot];
+        
         if verbose
             fprintf('[iter_var=%d/%d] iter_inner=%d/%d E_tot: %.2f E_def: %.2f E_fit=%.2f\n', ...
                 iter_var, size(anneal_sched, 1), ...
@@ -106,10 +126,10 @@ function [M_def, b_def] = compute_Mb_def(sigma_0, A, t, cs_home)
 nb_pts = size(cs_home, 2);
 AA = kron(eye(nb_pts, nb_pts), A); % makes blk-diag w/ A's on diag
 SS = kron(eye(nb_pts, nb_pts), sigma_0);
-sigma_i = inv(AA)'*inv(SS)*inv(AA);
-M_def = inv(sigma_i);
+sigma_i_inv = inv(AA)'*inv(SS)*inv(AA);
+M_def = sigma_i_inv;
 h_0 = reshape(cs_home, [size(cs_home,1)*size(cs_home,2), 1]);
-b_def = inv(sigma_i) * (AA*h_0 + repmat(t, [nb_pts, 1]));
+b_def = sigma_i_inv * (AA*h_0 + repmat(t, [nb_pts, 1]));
 end
 
 function [M_fit, b_fit] = compute_Mb_fit(nb_c, B, N_0, N_B, rs, Bs, var_b)
@@ -129,7 +149,7 @@ function [M_fit, b_fit] = compute_Mb_fit(nb_c, B, N_0, N_B, rs, Bs, var_b)
 %  
 % Compute M_fit (Eq. B.3)
 M_fit = zeros([2*nb_c, 2*nb_c]);
-t1 = (N_0/((var_b^2)*B));        
+t1 = (N_0/((var_b^2)*N_B));        
 for i=1:size(M_fit,1)
     for j=1:size(M_fit,2)
         t2 = 0.0;
@@ -143,7 +163,6 @@ for i=1:size(M_fit,1)
 end
 % Compute b_fit (Eq. B.4)
 b_fit = zeros([2*nb_c, 1]);
-t1 = (N_0/((var_b^2)*B));
 for i=1:size(b_fit,1)
     t2 = 0.0;
     for g=1:B
