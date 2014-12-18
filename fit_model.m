@@ -70,6 +70,9 @@ for iter_var=1:size(anneal_sched, 1)
         M = (C*M_def + M_fit);
         b = (C*b_def + b_fit);
         cs_new = (M\b); % stacked (x,y) coords. In image coords. M*cs = b
+        % Ensure that ctrl points never leave the image bounds
+        cs_new(1:2:end) = min(max(cs_new(1:2:end), 0), size(I,2));
+        cs_new(2:2:end) = min(max(cs_new(2:2:end), 0), size(I,1));
         xs_est = reshape(cs_new, [2, nb_c]);
         
         [bs, Bs] = compute_bead_locs(xs_est', N_B); % in img frame
@@ -97,8 +100,8 @@ for iter_var=1:size(anneal_sched, 1)
                      E_def, E_fit, E_tot];
 
         if verbose
-            fprintf('[iter_var=%d/%d] iter_inner=%d/%d E_tot: %.2f E_def: %.2f E_fit=%.2f\n', ...
-                iter_var, size(anneal_sched, 1), ...
+            fprintf('iter=%d [iter_var=%d/%d] iter_inner=%d/%d E_tot: %.2f E_def: %.2f E_fit=%.2f\n', ...
+                iter_overall, iter_var, size(anneal_sched, 1), ...
                 iter_inner, max_inner_iters, ...
                 E_tot, E_def, E_fit);
         end

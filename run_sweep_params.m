@@ -1,5 +1,5 @@
 % Script to sweep over parameter values
-datestr_now = datestr(now);
+datestr_now = datestr(now, 'dd-mmm-yyyy_HH_MM_SS')
 rootdir = sprintf('gs_%s', datestr_now);
 mkdir(rootdir);
 partials_dir = fullfile(rootdir, 'partials');
