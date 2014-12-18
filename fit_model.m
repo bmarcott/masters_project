@@ -1,4 +1,4 @@
-function [xs_est, A, t, E_def, E_fit, intermeds] = fit_model(I, cs_home, anneal_sched, N_0, pi_n, C, verbose)
+function [xs_est, A, t, E_def, E_fit, intermeds] = fit_model(I, cs_home, anneal_sched, N_0, pi_n, C, lambda_reg, verbose)
 %FIT_MODEL Fits cubic b-spline to image I.
 %INPUT
 %  matrix I: [h x w]
@@ -19,10 +19,10 @@ nb_c = size(cs_home, 2); % Nb. control points
 %N_0 = 160; % "Standard" nb. of pixels. [See pg. 31 of thesis]
 N_I = sum(sum(I));  % Nb. of inked pixels (assumes binary image I)
 %pi_n = 0.3; % mixing coef. btwn uniform-noise and gaussian-mixture
-EPS = 1e-8;
+EPS = 1e-4;
 
 [inkedRows, inkedCols] = find(I == 1);
-inked = [inkedRows, inkedCols];
+inked = [inkedRows, inkedCols]; % [N x 2]
 
 %% Initialize parameters
 % Affine trans (A,t) maps object frame to image frame
@@ -35,6 +35,7 @@ E_tots = [];
 intermeds = {{xs_est, A, t, nan, nan, 8}};
 
 %% Minimize Energy Function
+iter_overall = 0;
 for iter_var=1:size(anneal_sched, 1)
     %% Pull out meta-params from annealing schedule
     N_B = anneal_sched(iter_var, 1); % Nb. beads
@@ -66,7 +67,7 @@ for iter_var=1:size(anneal_sched, 1)
         xs_est = reshape(cs_new, [2, nb_c]);
         %% M-step (part 2)
         % Update affine trans. A,t by minimizing E_def while keeping x_new fixed
-        [A, t] = min_E_def(cs_new, cs_home);
+        [A, t] = min_E_def(cs_new, cs_home, lambda_reg);
         E_def = compute_E_def(xs_est, cs_home, A, t);
         E_fit = compute_E_fit(rs, norm_terms, N_0, N_I);
         %% Update intermeds
@@ -76,6 +77,7 @@ for iter_var=1:size(anneal_sched, 1)
         delt = E_tot_p - E_tot;
         E_tot = E_tot_p;
         E_tots = [E_tots E_tot];
+        iter_overall = iter_overall + 1;
         if verbose
             fprintf('[iter_var=%d/%d] iter_inner=%d/%d E_tot: %.2f E_def: %.2f E_fit=%.2f\n', ...
                 iter_var, size(anneal_sched, 1), ...
