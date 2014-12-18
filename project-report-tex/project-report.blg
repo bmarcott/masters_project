@@ -3,44 +3,47 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: project-report.aux
 The style file: plain.bst
 Database file #1: project-bibfile.bib
-You've used 1 entry,
+Warning--to sort, need author or key in mnist
+Warning--empty journal in revow1993using
+You've used 10 entries,
             2118 wiz_defined-function locations,
-            505 strings with 4268 characters,
-and the built_in function-call counts, 516 in all, are:
-= -- 54
-> -- 18
+            569 strings with 5817 characters,
+and the built_in function-call counts, 3644 in all, are:
+= -- 355
+> -- 182
 < -- 1
-+ -- 7
-- -- 6
-* -- 32
-:= -- 79
-add.period$ -- 4
-call.type$ -- 1
-change.case$ -- 6
++ -- 75
+- -- 62
+* -- 290
+:= -- 603
+add.period$ -- 31
+call.type$ -- 10
+change.case$ -- 61
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 23
-empty$ -- 42
-format.name$ -- 6
-if$ -- 117
+cite$ -- 12
+duplicate$ -- 117
+empty$ -- 276
+format.name$ -- 62
+if$ -- 751
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 2
-pop$ -- 8
+int.to.str$ -- 10
+missing$ -- 9
+newline$ -- 53
+num.names$ -- 18
+pop$ -- 58
 preamble$ -- 1
-purify$ -- 5
+purify$ -- 51
 quote$ -- 0
-skip$ -- 19
+skip$ -- 80
 stack$ -- 0
-substring$ -- 37
-swap$ -- 11
+substring$ -- 262
+swap$ -- 19
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
-warning$ -- 0
-while$ -- 5
-width$ -- 2
-write$ -- 14
+type$ -- 40
+warning$ -- 2
+while$ -- 31
+width$ -- 12
+write$ -- 109
+(There were 2 warnings)

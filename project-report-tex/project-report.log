@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  2 DEC 2014 16:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  17 DEC 2014 13:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -557,31 +557,76 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 16.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 16.
- (./project-report.bbl) [1
 
-{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./proj
-ect-report.aux) ) 
+Underfull \hbox (badness 10000) in paragraph at lines 28--35
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--35
+
+ []
+
+[1
+
+{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<bestFitEg.png, id=16, 823.075pt x 248.93pt>
+File: bestFitEg.png Graphic file (type png)
+ <use bestFitEg.png>
+Package pdftex.def Info: bestFitEg.png used on input line 38.
+(pdftex.def)             Requested size: 341.43161pt x 92.47108pt.
+
+Overfull \hbox (0.4605pt too wide) in paragraph at lines 45--56
+\OT1/cmr/m/n/10 Prominent amount of work in the field of hand-writ-ing recog-ni
+-tion re-volves around
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--56
+
+ []
+
+[2 <./bestFitEg.png>] (./project-report.bbl
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 5.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 5.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3])
+[4] (./project-report.aux) ) 
 Here is how much of TeX's memory you used:
- 11857 strings out of 493117
- 237555 string characters out of 6135433
- 277858 words of memory out of 5000000
- 15095 multiletter control sequences out of 15000+600000
- 6277 words of font info for 23 fonts, out of 8000000 for 9000
+ 11886 strings out of 493117
+ 237917 string characters out of 6135433
+ 281894 words of memory out of 5000000
+ 15117 multiletter control sequences out of 15000+600000
+ 7801 words of font info for 28 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,5n,54p,838b,185s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbx9.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9
-.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.p
-fb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb
->
-Output written on project-report.pdf (1 page, 95569 bytes).
+ 55i,6n,54p,1251b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2014/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr9.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmti9.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmtt9.pfb>
+Output written on project-report.pdf (4 pages, 160915 bytes).
 PDF statistics:
- 43 PDF objects out of 1000 (max. 8388607)
- 31 compressed objects within 1 object stream
+ 55 PDF objects out of 1000 (max. 8388607)
+ 38 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
