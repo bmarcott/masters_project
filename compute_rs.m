@@ -115,28 +115,3 @@ end
 
 return;
 end
-if 1
-    %% Old way of computing
-    for ndx = 1 : size(inked,1)
-        i = inked(ndx,1);
-        j = inked(ndx,2);
-            %% Compute normalization term
-            norm_term = (pi_n*B)/((1-pi_n)*a);
-            for b=1:B
-                mu_b = bs(:,b); % col vec
-                norm_term = norm_term + mvnpdf([j;i], mu_b,var_b*eye(2)); % 51.7%
-            end
-            norm_terms(i,j) = norm_term;            
-            %% Compute rs_b(i,j)
-            for b=1:B
-                mu_b = bs(:, b); % col vec            
-                rs(b,i,j) = mvnpdf([j;i], mu_b, var_b*eye(2)) / norm_term; % 46.2%
-            end
-    end
-end
-
-if (max(rs(:)) > 1.0)
-    keyboard
-end
-
-end
