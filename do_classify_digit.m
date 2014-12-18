@@ -1,25 +1,3 @@
-%% Read Images
-trainingImagePath = 'mnist/train-images.idx3-ubyte';
-trainingLabelPath = 'mnist/train-labels.idx1-ubyte';
-numToTrain = 400;
-offset = 0;
-
-%inds_2 = [6, 17, 26, 29, 77, 83, 110, 118, 121, 123, 144];
-%inds_3 = [8, 11, 13, 28, 45, 50, 51, 75, 87];
-
-%inds_2 = inds_2(1:4);
-%inds_3 = inds_3(1:4);
-
-%inds_2 = [6];
-%inds_3 = [];
-
-%inds_imgs = [8];
-
-[imgs, labels] = readMNIST(trainingImagePath, trainingLabelPath, numToTrain, offset);
-inds_2 = find(labels==2)';
-inds_3 = find(labels==3)';
-inds_imgs = [inds_2, inds_3];
-
 %% Define parameters
 if (~exist('FLAG_GS', 'var'))
     ANNEAL_SCHED = [...
@@ -46,9 +24,31 @@ if (~exist('FLAG_GS', 'var'))
     N_0 = 160; % "Standard" nb. of pixels. [See pg. 31 of thesis]
     PI_N = 0.3; % mixing coef. btwn uniform-noise and gaussian-mixture
     C = 1.0; % weight of E_def
-    VERBOSE = 0;
+    LAMBDA_REG = 10.0; % regularization param for min_E_def()
+    VERBOSE = 1;
+    RNG_SEED = 42;
 end
 
+%% Read Images
+rng(RNG_SEED);
+trainingImagePath = 'mnist/train-images.idx3-ubyte';
+trainingLabelPath = 'mnist/train-labels.idx1-ubyte';
+numToTrain = 10000;
+offset = 0;
+
+%inds_2 = [6, 17, 26, 29, 77, 83, 110, 118, 121, 123, 144];
+%inds_3 = [8, 11, 13, 28, 45, 50, 51, 75, 87];
+
+[imgs, labels] = readMNIST(trainingImagePath, trainingLabelPath, numToTrain, offset);
+inds_2 = find(labels==2)';
+inds_3 = find(labels==3)';
+NB_EXS = 50;
+inds_2 = inds_2(randperm(length(inds_2), NB_EXS/2));
+inds_3 = inds_3(randperm(length(inds_3), NB_EXS/2));
+
+inds_imgs = [inds_2, inds_3];
+%inds_imgs = [199];
+inds_imgs = inds_imgs(10);
 %% Define Models
 % Digit model 2
 twoCPs = [[1.5, 3];
@@ -77,7 +77,8 @@ threeCPs(:, 2) = -threeCPs(:, 2) + ones(size(threeCPs,1), 1) * 6;
 threeCPs = [threeCPs(1,:);
             threeCPs;
             threeCPs(end,:)];
-models = {{2, twoCPs'}, ...
+models = {...
+    {2, twoCPs'}, ...
     {3, threeCPs'}, ...
     };
 
@@ -98,7 +99,7 @@ for i=1:size(imgs_p, 3)
     fprintf('== Classifying image %d/%d ==\n', i, size(imgs_p, 3));
     Ip = squeeze(imgs_p(:,:,i));
     tic_inner = tic;
-    [labels_pred(i), params_pred{i}, intermedss{i}] = classify_digit(Ip, models, ANNEAL_SCHED, N_0, PI_N, C, VERBOSE);
+    [labels_pred(i), params_pred{i}, intermedss{i}] = classify_digit(Ip, models, ANNEAL_SCHED, N_0, PI_N, C, LAMBDA_REG, VERBOSE);
     toc_inner = toc(tic_inner);
     fprintf('== Finished image %d/%d (%.4fs) ==\n', i, size(imgs_p,3), toc_inner);
 end
