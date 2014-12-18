@@ -18,7 +18,18 @@ ps = [[1, 5];
     [1.0, 1.0];
     [2.0, 1.5];
     [4.0, 1.75]];
-ps(:, 2) = -ps(:, 2) + ones(size(ps,1), 1) * 6;
+
+
+ps = [[1, 4.5];
+      [2, 4];
+      [1.5, 2.5];
+      [1.25, 2.5];
+      [1.5, 2.5];
+      [2, 1];
+      [1, 0.5];
+      [1, 0.5]];
+
+% ps(:, 2) = -ps(:, 2) + ones(size(ps,1), 1) * 6;
 
 % duplicate start/end ctrl pts
 ps = [ps(1,:);
@@ -42,7 +53,7 @@ end
 [bs, Ms] = compute_bead_locs(ps, N_B);
 
 %% Plot things
-figure;
+z = figure;
 plot(xs, ys, 'b'); hold on;
 plot(bs(1,:), bs(2,:), 'x'); hold on;
 plot(ps(:, 1), ps(:, 2), 'r+'); hold on;
