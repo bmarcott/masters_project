@@ -25,7 +25,7 @@ if (~exist('FLAG_GS', 'var'))
     PI_N = 0.3; % mixing coef. btwn uniform-noise and gaussian-mixture
     C = 1.0; % weight of E_def
     LAMBDA_REG = 0.0; % regularization param for min_E_def()
-    P_A = 5.0; % for classification: E_tot = E_def + P_A*E_fit
+    P_A = 2.5; % for classification: E_tot = E_def + P_A*E_fit
     VERBOSE = 1;
     RNG_SEED = 42;
 end
@@ -44,7 +44,7 @@ offset = 0;
 %% Decide which images to use
 inds_2 = find(labels==2)';
 inds_3 = find(labels==3)';
-NB_EXS = 200;
+NB_EXS = 450;
 inds_2 = inds_2(randperm(length(inds_2), NB_EXS/2));
 inds_3 = inds_3(randperm(length(inds_3), NB_EXS/2));
 inds_imgs = [inds_2, inds_3];
@@ -150,22 +150,22 @@ labels_pred = [];
 params_pred = {};
 intermedss = {};
 for i=1:size(imgs_p, 3)
-    fprintf('== Classifying image %d/%d ==\n', i, size(imgs_p, 3));
+    fprintf('== Classifying image %d/%d [Label: "%d"] ==\n', i, size(imgs_p, 3), labels(inds_imgs(i)));
     Ip = squeeze(imgs_p(:,:,i));
     tic_inner = tic;
     [labels_pred(i), params_pred{i}, intermedss{i}] = classify_digit(Ip, models, ANNEAL_SCHED, N_0, PI_N, C, LAMBDA_REG, VERBOSE);
     toc_inner = toc(tic_inner);
-    fprintf('== Finished image %d/%d (%.4fs) ==\n', i, size(imgs_p,3), toc_inner);
+    fprintf('== Finished image %d/%d [Label: "%d"] (%.4fs) ==\n', i, size(imgs_p,3), labels(inds_imgs(i)), toc_inner);
 end
 toc1 = toc(tic1);
 fprintf('Done fitting. (%.2fs)\n', toc1);
 
 %% Save workspace to file.
 if 1
-tmp_fpath = sprintf('%s.mat', datestr(now, 'dd-mmm-yyyy_HH_MM_SS'));
-clear('imgs');
-save(tmp_fpath);
-fprintf('Saved results to: %s\n', tmp_fpath);
+    tmp_fpath = sprintf('%s.mat', datestr(now, 'dd-mmm-yyyy_HH_MM_SS'));
+    clear('imgs');
+    save(tmp_fpath);
+    fprintf('Saved results to: %s\n', tmp_fpath);
 end
 
 %% Evaluate
@@ -209,7 +209,20 @@ acc2 = nb_pos2 / (nb_pos2 + nb_neg2);
 accs_total2 = [acc2, nb_pos2, nb_neg2, P_A];
 fprintf('Alternate Classification (P_A=%f):\n', P_A);
 fprintf('    Acc: %.4f (nb_pos: %d nb_neg: %d)\n', acc2, nb_pos2, nb_neg2);
+% Digit-level accuracies
+accs_digs = [];
+for i=1:length(models)
+    model = models{i};
+    digit_cur = model{1};
+    inds_dig = find(labels(inds_imgs) == digit_cur); 
+    nb_pos_dig2 = sum(digit_cur == labels_pred2(inds_dig));
+    nb_neg_dig2 = length(inds_dig) - nb_pos_dig2;
+    acc_dig2 = nb_pos_dig2/(nb_pos_dig2+nb_neg_dig2);
+    %accs_digs(i,:) = [acc_dig2, nb_pos_dig2, nb_neg_dig2];
+    fprintf('[Digit %d] Acc: %.4f (nb_pos: %d nb_neg: %d)\n', digit_cur, acc_dig2, nb_pos_dig2, nb_neg_dig2);
+end
 
+%%
 if ~exist('FLAG_GS', 'var') % don't visualize if we're doing gridsearch
 %% Visualize classifications
 for i=1:length(inds_imgs)
