@@ -59,20 +59,30 @@ twoCPs = [[1.5, 3];
     [1.25, 1.5];
     [2.0, 1.5];
     [4.0, 1.5]];
+
+% curly two
+twoCPs = [[1.5, 3.5];
+    [2.4, 3.9];
+    [2.4, 2.75]
+    [1.5, 1.5];
+    [1.5, 2.5];
+    [1.85, 2];
+    [2, 1.9];
+    [2.4, 1.5]];
 twoCPs(:, 2) = -twoCPs(:, 2) + ones(size(twoCPs,1), 1) * 6;
 % duplicate start/end ctrl pts
 twoCPs = [twoCPs(1,:);
     twoCPs;
     twoCPs(end,:)];
 % Digit model 3
-threeCPs = [[1, 4.5];
-      [2, 4];
+threeCPs = [[1.25, 3.55];
+      [1.6, 4.25];
+      [1.7, 2.65];
+      [1.25, 2];
       [1.5, 2.5];
-      [1.25, 2.5];
-      [1.5, 2.5];
-      [2, 1];
-      [1, 0.5];
-      [1, 0.5]];
+      [1.65, 1.1];
+      [1.6, 0];
+      [1.2, 0.5]];
 threeCPs(:, 2) = -threeCPs(:, 2) + ones(size(threeCPs,1), 1) * 6;  
 threeCPs = [threeCPs(1,:);
             threeCPs;
