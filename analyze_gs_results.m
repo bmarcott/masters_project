@@ -26,5 +26,3 @@ params_pred = gs_results{4}{2};
 intermedss = gs_results{4}{3};
 accs_total = gs_results{4}{4};
 accs_digs = gs_results{4}{5};
-
-

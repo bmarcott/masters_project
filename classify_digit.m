@@ -1,4 +1,4 @@
-function [label, params_out, intermedss] = classify_digit(I, models, anneal_sched, N_0, pi_n, C, verbose)
+function [label, params_out, intermedss] = classify_digit(I, models, anneal_sched, N_0, pi_n, C, lambda_reg, verbose)
 %CLASSIFY_DIGIT
 %INPUT
 %  matrix I: [h x w]
@@ -21,7 +21,7 @@ for i=1:length(models)
         fprintf('[i=%d/%d] Fitting model "%d" to image.\n', i, length(models), lbl);
     end
     cs = models{i}{2};
-    [xs_est, A_i, t_i, E_def_i, E_fit_i, intermeds] = fit_model(I, cs, anneal_sched, N_0, pi_n, C, verbose);
+    [xs_est, A_i, t_i, E_def_i, E_fit_i, intermeds] = fit_model(I, cs, anneal_sched, N_0, pi_n, C, lambda_reg, verbose);
     Es(i) = C*E_def_i + E_fit_i;
     params{i} = {xs_est, A_i, t_i, E_def_i, E_fit_i};
     intermedss{i} = intermeds;

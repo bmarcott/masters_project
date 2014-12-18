@@ -1,4 +1,4 @@
-function [A, t] = min_E_def(c, c_home)
+function [A, t] = min_E_def(c, c_home, LAMBDA)
 %MIN_E_DEF Implements the M-step Part 2. Minimize E with respect to the
 %affine transformation parameters (A, t).
 %INPUT
@@ -14,17 +14,16 @@ function [A, t] = min_E_def(c, c_home)
 n = length(c) / 2;
 c1 = reshape(c, [2, n]);
 c2 = reshape(c_home, [2, n]);
-
 if 0
     %% Buggy way of solving it analytically
     [A, t] = min_v2(c1, c2);
 else
     %% Use cvx to solve numerically
     cvx_begin quiet
-    cvx_solver sedumi
+    %cvx_solver sedumi
     variable A(2, 2)
     variable t(2, 1)
-    minimize( compute_E_def(c1, c2, A, t) );
+    minimize( compute_E_def(c1, c2, A, t) + LAMBDA*(norm(A) + norm(t)));
     cvx_end
 end
 end
