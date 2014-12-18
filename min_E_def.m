@@ -23,7 +23,7 @@ else
     %cvx_solver sedumi
     variable A(2, 2)
     variable t(2, 1)
-    minimize( compute_E_def(c1, c2, A, t) + LAMBDA*norm(A));
+    minimize( compute_E_def(c1, c2, A, t) + LAMBDA*(norm(A) + norm(t)));
     cvx_end
 end
 end
