@@ -28,9 +28,12 @@ if (~exist('FLAG_GS', 'var'))
     P_A = 2.5; % for classification: E_tot = E_def + P_A*E_fit
     VERBOSE = 1;
     RNG_SEED = 42;
+    SAVE_THINGS = 0; % set to 1 if you want to save workspace+diary
+else
+    SAVE_THINGS = 0; % never save workspace+diary during gridsearch
 end
 datestr_now_this = datestr(now, 'dd-mmm-yyyy_HH_MM_SS');
-if 1
+if SAVE_THINGS
     tmp_fpath = sprintf('%s_diary.txt', datestr_now_this);
     diary(tmp_fpath);
     fprintf('Saving diary to: %s\n', tmp_fpath);
@@ -60,7 +63,7 @@ inds_imgs = [inds_2, inds_3];
 %inds_imgs = [inds_2, inds_3];
 
 %inds_imgs = [26]; % an easy 2
-%inds_imgs = [77]; % an easy 2
+inds_imgs = [77]; % an easy 2
 %% Visualize the images
 if 0
     hfig = figure;
@@ -173,7 +176,7 @@ toc1 = toc(tic1);
 fprintf('Done fitting. (%.2fs)\n', toc1);
 
 %% Save workspace to file.
-if 1
+if SAVE_THINGS
     tmp_fpath = sprintf('%s.mat', datestr_now_this);
     clear('imgs');
     save(tmp_fpath);
