@@ -29,9 +29,11 @@ if (~exist('FLAG_GS', 'var'))
     VERBOSE = 1;
     RNG_SEED = 42;
 end
+datestr_now_this = datestr(now, 'dd-mmm-yyyy_HH_MM_SS');
 if 1
-    tmp_fpath = sprintf('%s_diary.txt', datestr(now, 'dd-mmm-yyyy_HH_MM_SS'));
+    tmp_fpath = sprintf('%s_diary.txt', datestr_now_this);
     diary(tmp_fpath);
+    fprintf('Saving diary to: %s\n', tmp_fpath);
 end
 %% Read Images
 rng(RNG_SEED);
@@ -44,7 +46,7 @@ offset = 0;
 %% Decide which images to use
 inds_2 = find(labels==2)';
 inds_3 = find(labels==3)';
-NB_EXS = 450;
+NB_EXS = 50;
 inds_2 = inds_2(randperm(length(inds_2), NB_EXS/2));
 inds_3 = inds_3(randperm(length(inds_3), NB_EXS/2));
 inds_imgs = [inds_2, inds_3];
@@ -172,7 +174,7 @@ fprintf('Done fitting. (%.2fs)\n', toc1);
 
 %% Save workspace to file.
 if 1
-    tmp_fpath = sprintf('%s.mat', datestr(now, 'dd-mmm-yyyy_HH_MM_SS'));
+    tmp_fpath = sprintf('%s.mat', datestr_now_this);
     clear('imgs');
     save(tmp_fpath);
     fprintf('Saved results to: %s\n', tmp_fpath);
@@ -200,39 +202,57 @@ end
 fprintf('Done.\n');
 
 %% Do alternate classification
-labels_pred2 = [];
-for i=1:length(intermedss) % for each image
-    label_pred = labels_pred(i);
-    label_true = labels(inds_imgs(i));
-    Es = [];
-    for m_i=1:length(intermedss{i})
-        % {xs_est, A, t, E_def, E_fit, N_B}
-        res = intermedss{i}{m_i}{end};
-        Es(m_i) = res{4} + P_A*res{5};
+accs_P_A = []; % accs_P_A(i,:) = [accs, nbpos, nbneg];
+accs_dig_P_A = []; % accs_dig_P_A(i,j,:) = [accs, nbpos, nbneg]
+P_As = [0:0.1:20];
+for P_A_i=1:length(P_As)
+    P_A = P_As(P_A_i);
+    labels_pred2 = [];
+    for i=1:length(intermedss) % for each image
+        label_pred = labels_pred(i);
+        label_true = labels(inds_imgs(i));
+        Es = [];
+        for m_i=1:length(intermedss{i})
+            % {xs_est, A, t, E_def, E_fit, N_B}
+            res = intermedss{i}{m_i}{end};
+            Es(m_i) = res{4} + P_A*res{5};
+        end
+        [~, ind_pred] = min(Es);
+        labels_pred2(i) = models{ind_pred}{1};
     end
-    [~, ind_pred] = min(Es);
-    labels_pred2(i) = models{ind_pred}{1};
+    nb_pos2 = sum(labels(inds_imgs) == labels_pred2');
+    nb_neg2 = length(inds_imgs) - nb_pos2;
+    acc2 = nb_pos2 / (nb_pos2 + nb_neg2);
+    accs_total2 = [acc2, nb_pos2, nb_neg2, P_A];
+    accs_P_A(P_A_i,:) = accs_total2;
+    % Digit-level accuracies
+    accs_digs = [];
+    for i=1:length(models)
+        model = models{i};
+        digit_cur = model{1};
+        inds_dig = find(labels(inds_imgs) == digit_cur); 
+        nb_pos_dig2 = sum(digit_cur == labels_pred2(inds_dig));
+        nb_neg_dig2 = length(inds_dig) - nb_pos_dig2;
+        acc_dig2 = nb_pos_dig2/(nb_pos_dig2+nb_neg_dig2);
+        accs_dig_P_A(P_A_i, i, :) = [acc_dig2, nb_pos_dig2, nb_neg_dig2];
+    end
 end
-nb_pos2 = sum(labels(inds_imgs) == labels_pred2');
-nb_neg2 = length(inds_imgs) - nb_pos2;
-acc2 = nb_pos2 / (nb_pos2 + nb_neg2);
-accs_total2 = [acc2, nb_pos2, nb_neg2, P_A];
-fprintf('Alternate Classification (P_A=%f):\n', P_A);
-fprintf('    Acc: %.4f (nb_pos: %d nb_neg: %d)\n', acc2, nb_pos2, nb_neg2);
-% Digit-level accuracies
-accs_digs = [];
-for i=1:length(models)
-    model = models{i};
-    digit_cur = model{1};
-    inds_dig = find(labels(inds_imgs) == digit_cur); 
-    nb_pos_dig2 = sum(digit_cur == labels_pred2(inds_dig));
-    nb_neg_dig2 = length(inds_dig) - nb_pos_dig2;
-    acc_dig2 = nb_pos_dig2/(nb_pos_dig2+nb_neg_dig2);
-    %accs_digs(i,:) = [acc_dig2, nb_pos_dig2, nb_neg_dig2];
-    fprintf('[Digit %d] Acc: %.4f (nb_pos: %d nb_neg: %d)\n', digit_cur, acc_dig2, nb_pos_dig2, nb_neg_dig2);
+[~, ind_bestP] = max(accs_P_A(:,1));
+P_A_best = P_As(ind_bestP);
+accs_bestP = accs_P_A(ind_bestP, :);
+accs_dig_bestP = squeeze(accs_dig_P_A(ind_bestP, :, :));
+fprintf('==== Alternate Classification ====\n');
+fprintf('Best P_A: %f\n', P_A_best);
+fprintf('    Acc: %.4f (nbpos: %d nbneg: %d)\n', accs_bestP(1:3));
+fprintf('Digit accuracies:\n');
+for i=1:size(accs_dig_bestP, 1)
+    fprintf('Model "%d": Acc %.4f (nbpos: %d nbneg: %d)\n', ...
+        models{i}{1}, accs_dig_bestP(i,:));
 end
 
 %%
+diary off
+
 if ~exist('FLAG_GS', 'var') % don't visualize if we're doing gridsearch
 %% Visualize classifications
 for i=1:length(inds_imgs)
