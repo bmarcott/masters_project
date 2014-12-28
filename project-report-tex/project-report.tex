@@ -24,7 +24,7 @@
 
 \title{Digit Detection Using Adaptive Spline Models}
 \author{ Ansuya Ahluwalia\inst{1} \and Eric Kim\inst{1} \and Nicholas Brett Marcott\inst{1} }
-\institute{University of California, Los Angeles \\* \email{ansuya@cs.ucla.edu, ekim@cs.ucla.edu, brett@ucla.edu}}
+\institute{University of California, Los Angeles \\* \email{ansuya@cs.ucla.edu, ekim@cs.ucla.edu, bmarcott@ucla.edu}}
 \maketitle
 
 \begin{abstract}
@@ -108,6 +108,7 @@ The maximization contains two steps. The first step maximizes the total energy w
 A fixed annealing schedule is used for the EM algorithm. At each stage of the annealing schedule, the variance of each of the ink generators is decreased and the number of them is increased to account for finer detail in the image. This process may stop either when the total energy has not changed by a set threshold or when all the iterations are complete. The process may converge to local maximum based on initial conditions.
 
 \subsection{Digit Classification}
+\label{sec:classify}
 
 In this project, we investigated two methods of performing digit classification.
 Given an input image, we perform the elastic matching algorithm from Section \ref{sec:methodology}. 
@@ -146,6 +147,17 @@ Following the authors of \cite{Hinton92adaptiveelastic}, we first apply several 
 First, the images are thresholded using Otsu's method, yielding a binary image with (hopefully) spurious details removed.
 See Figure \ref{fig:mnist_imgs} to see the results of the preprocessing operations.
 
+\subsection{Evaluation}
+
+First, we determined the optimal setting for the $\alpha$ parameter (see Section \ref{sec:classify}) by doing a grid-search on a separate validation set of 50 images.
+For the other parameters ($N_0$, $\pi_N$), we elected to use the values that the authors suggest in \cite{Hinton92adaptiveelastic}, as we found that they worked well in practice.
+
+We evaluated the digit classification algorithm on 150 images from MNIST.
+Results are found in Table \ref{tab:results}.
+In our simple MATLAB implementation, it takes roughly 110 seconds to classify an image.
+Much of the time is spent solving a least-squares problem with a general-purpose solver\footnote{CVX: http://cvxr.com/cvx/}.
+
+
 \begin{figure*}
 \centering
 \begin{tabular}{cc}
@@ -156,20 +168,39 @@ See Figure \ref{fig:mnist_imgs} to see the results of the preprocessing operatio
 \label{fig:mnist_imgs}
 \end{figure*}
 
-\begin{center}
-  \begin{tabular}{ l | c || r }
-    \hline
-    1 & 2 & 3 \\ \hline
-    4 & 5 & 6 \\ \hline
-    7 & 8 & 9 \\
-    \hline
+\begin{table}
+\centering
+  \begin{tabular}{ l || c | c | c }
+  & Accuracy & Correct & Incorrect \\ \hline
+    Original &  FOO\% & FOO & FOO \\ \hline
+    Weighted Sum ($\alpha = FOO$) & FOO\% & FOO & FOO \\
   \end{tabular}
-\end{center}
+\vspace{1em}
+\caption{Classification results on MNIST. ``Original'' corresponds to the first classifier defined by Equation \ref{eq:class1}. ``Weighted Sum'' corresponds to the classifier defined by Equation \ref{eq:class2}.}
+\label{tab:results}
+\end{table}
 
 
-\section{Discussion}
+
+\subsection{Discussion}
+
+Model-based top-down approaches such as the one presented here leads to easily interpretable results.
+After fitting, the deformable digit spline models provide a powerful interpretation of the input image.
+However, this power comes at a cost - the iterative algorithm is a very expensive online process.
+Further, the recognition rates listed in this report are fairly lack-luster, considering that performance on the MNIST dataset has effectively saturated at near-perfect accuracy.
+For instance, Ciresan et. al. reports an error rate as low as 0.23\% on MNIST by utilizing a deep neural network \cite{ciresan}.
+
+Yet, it is worth noting the attractive qualities of model-based methods such as the one explored here.  
+The iterative fitting process seeks to best explain the input image with respect to a set of known digit spline models.
+As a result, the algorithm richly describes the image in a principled manner.
+On the other hand, approaches such as \cite{ciresan} train classifiers with the explicit goal of classification.
+Often, such approaches treat the problem purely as a pattern recognition problem, and don't care to ``explain'' the images.
+Thus, in a philosophical sense it is difficult to compare the two approaches, as the goals are inherently different.
 
 \section{Conclusion}
+
+We have investigated a model-based approach to digit recognition that iteratively fits deformable spline models to input digit images, yielding easily interpretable results.
+
 
  \bibliography{project-bibfile}
 \bibliographystyle{plain}

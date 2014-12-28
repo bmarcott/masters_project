@@ -4,12 +4,65 @@
 <head>
     <title>CS 269 Fall 2014 Project</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- My scripts/stylesheets -->
+    <link href="css/shared.css" rel="stylesheet" type="text/css"/>
+    <link href="css/index.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
 
-This is a project page.
+<div id="content">
 
+<h1 align="center">CS 269 Project Page </h1>
+<h3 align="center">Fall 2014</h3>
+
+<div align="center">
+<img class="add_border" src="imgs/header_img.png">
+<p class="centerme"> Fitting a digit model to an input image. </p>
+</div>
+
+<h2> Project Abstract </h2>
+
+<p>
+Automated handwriting detection remains an interesting yet challenging problem in the Vision field. This project investigates an approach from Hinton et. al. that uses an elastic model to recognize digits. Each digit class is represented by a cubic spline in an "ideal" configuration. To classify a test image, an iterative algorithm performs an elastic match between the test image and each digit model. Validation is performed against the publically-available handwritten digit dataset, MNIST.
+</p>
+
+<h2> Group Members </h2>
+
+<p> Ansuya Ahluwalia, ansuya@cs.ucla.edu </p>
+<p> Eric Kim, ekim@cs.ucla.edu </p>
+<p> Nicholas Brett Marcott, bmarcott@ucla.edu </p>
+
+<h2> Project Materials </h2>
+
+<p>
+The project report PDF can be found <a href="pdfs/project-report.pdf" download>here</a>.
+</p>
+
+<p>
+Additionally, you can view several animations that illustrate the digit fitting process.
+
+<table class="add_border centerme" style="width:100%">
+<tr>
+    <td> Fitting models to images of "2" </td>
+    <td> 
+        <a href="movs/img_26_fits.avi" download>Ex1</a>, 
+        <a href="movs/img_77_fits.avi" download>Ex2</a>
+    </td>
+</tr>
+<tr>
+    <td> Fitting models to images of "3" </td>
+    <td>
+        <a href="movs/img_6099_fits.avi" download>Ex1</a>, 
+        <a href="movs/img_7151_fits.avi" download>Ex2</a>
+    </td>
+</tr>
+</table>
+
+</p>
+
+
+</div>
 
 </body>
 
