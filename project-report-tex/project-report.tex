@@ -112,6 +112,7 @@ The maximization contains two steps. The first step maximizes the total energy w
 A fixed annealing schedule is used for the EM algorithm. At each stage of the annealing schedule, the variance of each of the ink generators is decreased, while the number of beads is increased to account for finer character detail. This fitting stops either when the total energy has not changed by a set threshold, or when all the iterations are complete. The process may converge to local maximum based on initial conditions.
 
 Several examples of converged fits can be seen in Figures \ref{fig:good_fit_2}, \ref{fig:good_fit_3}, \ref{fig:bad_fit_3}.
+The green crosses are the equally-spaced Gaussian beads along the spline (in red).
 
 \begin{figure*}
 \centering
@@ -180,11 +181,19 @@ See Figure \ref{fig:mnist_imgs} to see the results of the preprocessing operatio
 
 \subsection{Evaluation}
 
-First, we determined the optimal setting for the $\alpha$ parameter (see Section \ref{sec:classify}) by doing a grid-search on a separate validation set of 50 images.
+First, we determined the optimal setting for the $\alpha$ parameter (see Section \ref{sec:classify}) by doing a grid-search on a separate validation set of 50 images ($\alpha = 0.9$).
+To view the best-case performance of this weighted-sum classifier, we also include the evaluation results with the $\alpha$ that achieves the best test performance ($\alpha^{*} = 9.1$).
+We suspect that as the validation set size increases, the discrepancy between these two cases should shrink.
 For the other parameters ($N_0$, $\pi_N$), as well as the annealing schedule, we opted to use the settings that the authors suggest in \cite{Hinton92adaptiveelastic}, as we found that they worked well in practice.
 
-We evaluated the digit classification algorithm on 150 images from MNIST.
+We evaluated the digit classification algorithm on 230 images from MNIST.
 Results are found in Table \ref{tab:results}.
+One observation is that the the weighted-sum classifier with $\alpha=0.9$ performs slightly worse than the original classifier.
+This may be simply due to a small validation set size - 50 images is not enough images to generalize upon.
+The best-case performance of the weighted-sum classifier does end up boosting overall performance by 3.4\%.
+It's interesting to note that the ``two'' digits are harder than the ``three'' digits - there is typically a 10\% difference in performance between the two classes.
+To further improve classification performance, it would be beneficial to examine the causes of this apparent ``difficulty'' discrepancy.
+
 In our MATLAB implementation, it takes roughly 110 seconds to classify an image.
 There are many opportunities to optimize the code.
 For instance, much of the time is spent solving a least-squares problem with a general-purpose solver\footnote{CVX: http://cvxr.com/cvx/}.
@@ -202,13 +211,20 @@ By analytically reducing the least-squares problem to a linear system, one would
 
 \begin{table}
 \centering
-  \begin{tabular}{ l || c | c | c }
-  & Accuracy & Correct & Incorrect \\ \hline
-    Original &  FOO\% & FOO & FOO \\ \hline
-    Weighted Sum ($\alpha = FOO$) & FOO\% & FOO & FOO \\
+  \begin{tabular}{ l | c || c | c | c }
+  & Digit Class & Accuracy & Correct & Incorrect \\ \hline
+    Original & &  59.6\% & 137 & 93 \\
+    & Two & 54.8\% & 63 & 52 \\
+    & Three & 64.4\% & 74 & 41 \\ \hline
+    Weighted Sum ($\alpha = 0.9$) & & 58.7\% & 135 & 95 \\
+    & Two & 53.9\% & 62 & 53 \\
+    & Three & 63.5\% & 73 & 42 \\ \hline
+    Weighted Sum ($\alpha^{*} = 9.1$) & & 63.0\% & 145 & 85 \\
+    & Two & 56.5\% & 65 & 50 \\
+    & Three & 69.6\% & 80 & 35 \\ \hline    
   \end{tabular}
 \vspace{1em}
-\caption{Classification results on MNIST. ``Original'' corresponds to the first classifier defined by Equation \ref{eq:class1}. ``Weighted Sum'' corresponds to the classifier defined by Equation \ref{eq:class2}.}
+\caption{Classification results on MNIST. ``Original'' corresponds to the first classifier defined by Equation \ref{eq:class1}. ``Weighted Sum'' corresponds to the classifier defined by Equation \ref{eq:class2}. The $\alpha=0.9$ case corresponds to the best $\alpha$ found during validation, whereas $\alpha^{*}=9.1$ corresponds to the best-possible $\alpha$ during testing.}
 \label{tab:results}
 \end{table}
 
