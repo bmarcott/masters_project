@@ -28,7 +28,7 @@ if (~exist('FLAG_GS', 'var'))
     P_A = 2.5; % for classification: E_tot = E_def + P_A*E_fit
     VERBOSE = 1;
     RNG_SEED = 42;
-    SAVE_THINGS = 0; % set to 1 if you want to save workspace+diary
+    SAVE_THINGS = 1; % set to 1 if you want to save workspace+diary
 else
     SAVE_THINGS = 0; % never save workspace+diary during gridsearch
 end
@@ -46,14 +46,23 @@ numToTrain = 10000;
 offset = 0;
 
 [imgs, labels] = readMNIST(trainingImagePath, trainingLabelPath, numToTrain, offset);
+
 %% Decide which images to use
+DO_VALIDATE = 0; % if 0, then we are doing testing.
+NB_VALIDATE = 50; % must be even nbs
+NB_TEST = 230;
 inds_2 = find(labels==2)';
 inds_3 = find(labels==3)';
-NB_EXS = 50;
-inds_2 = inds_2(randperm(length(inds_2), NB_EXS/2));
-inds_3 = inds_3(randperm(length(inds_3), NB_EXS/2));
+inds_2 = inds_2(randperm(length(inds_2), length(inds_2)));
+inds_3 = inds_3(randperm(length(inds_3), length(inds_3)));
+if DO_VALIDATE
+    inds_2 = inds_2(1:NB_VALIDATE/2);
+    inds_3 = inds_3(1:NB_VALIDATE/2);
+else
+    inds_2 = inds_2((NB_VALIDATE/2)+1:((NB_VALIDATE/2)+1+(NB_TEST/2)-1));
+    inds_3 = inds_3((NB_VALIDATE/2)+1:((NB_VALIDATE/2)+1+(NB_TEST/2)-1));
+end
 inds_imgs = [inds_2, inds_3];
-
 %inds_imgs = [199];
 %inds_imgs = inds_imgs(10);
 
@@ -63,7 +72,9 @@ inds_imgs = [inds_2, inds_3];
 %inds_imgs = [inds_2, inds_3];
 
 %inds_imgs = [26]; % an easy 2
-inds_imgs = [77]; % an easy 2
+%inds_imgs = [77]; % an easy 2
+%inds_imgs = [26, 77];
+%inds_imgs = [8];
 %% Visualize the images
 if 0
     hfig = figure;
@@ -74,6 +85,17 @@ if 0
         pause;
     end
     close(hfig);
+end
+
+%% (Report) Grab a few example images
+if 0
+    for i=[1, length(inds_imgs)]
+        ind = inds_imgs(i);
+        I = imresize(squeeze(imgs(:,:,ind)), 5.0, 'bilinear');
+        I = (I - min(I(:))) / (max(I(:)) - min(I(:)));
+        I = 1 - I; % invert colors
+        imwrite(I, sprintf('Imnist_%d.png', ind));
+    end
 end
 
 %% Define Models
@@ -159,6 +181,17 @@ for i=1:length(inds_imgs)
     imgs_p(:,:,i) = preprocess_img(I);
 end
  
+%% (Report) Show preprocessed images
+if 0
+    for ind=[1, size(imgs_p, 3)]
+        I = imresize(squeeze(imgs_p(:,:,ind)), 5.0, 'bilinear');
+        I = (I - min(I(:))) / (max(I(:)) - min(I(:)));
+        I = 1 - I; % invert colors
+        imwrite(I, sprintf('Imnist_proc_%d.png', ind));
+    end
+    keyboard
+end
+
 %% Do classification
 tic1 = tic;
 labels_pred = [];
@@ -259,6 +292,7 @@ diary off
 if ~exist('FLAG_GS', 'var') % don't visualize if we're doing gridsearch
 %% Visualize classifications
 for i=1:length(inds_imgs)
+%for i=length(inds_imgs):-1:1
     Ip = squeeze(imgs_p(:,:,i));
     if labels(inds_imgs(i)) == 2
         ps = models{1}{2}';
@@ -321,4 +355,81 @@ for i = 1 : length(params_pred) % for each image
         end
     end
 end
+end
+
+if 0
+%% Make movies of selected fits
+%% Create frames
+img_ids_mov = [26, 77];
+frames = []; % frames(i, model_i, w, h, chns, frame_i)
+cntr_ = 1;
+for i=1:length(params_pred)
+    if ~ismember(inds_imgs(i), img_ids_mov)
+        continue
+    end
+    img_ind = inds_imgs(i);
+    % Visualize final output
+    xs = params_pred{i}{1};
+    A = params_pred{i}{2};
+    t = params_pred{i}{3};
+    E_def = params_pred{i}{4};
+    E_fit = params_pred{i}{5};
+    intermeds = intermedss{i};
+    Ip = imgs_p(:,:,i);
+    % Animate iterative process
+    h = figure;
+    for model_ind=1:length(intermeds) % for each digit/model
+        ps = models{model_ind}{2}';
+        intermed_mdl = intermeds{model_ind}; 
+        for step_i=1:length(intermed_mdl); % for each step/iter
+            xs_i = intermed_mdl{step_i}{1};
+            A_i = intermed_mdl{step_i}{2};
+            t_i = intermed_mdl{step_i}{3};
+            E_def_i = intermed_mdl{step_i}{4};
+            E_fit_i = intermed_mdl{step_i}{5};
+            N_B_i = intermed_mdl{step_i}{6};
+            visualize_model(Ip, xs_i, ps', A_i, t_i, N_B_i);
+            suptitle(sprintf('ImgId: %d Model: "%d" [Iter %d/%d] (E_{tot}: %.2f E_{def}: %.2f E_{fit}: %.2f)', ...
+                img_ind, models{model_ind}{1}, step_i, length(intermed_mdl), ...
+                E_def_i+E_fit_i, E_def_i, E_fit_i));
+            frame = getframe(h);
+            frames(cntr_, model_ind, :,:,:, step_i) = frame.cdata;
+        end
+    end
+    cntr_ = cntr_ + 1;
+end
+
+%% Create + save output movie
+frame_rate = 'auto';
+for i=1:size(frames,1)
+    ind = img_ids_mov(i);
+    mov_outpath = sprintf('img_%d_fits.avi', ind);
+    movw = VideoWriter(mov_outpath);
+    if (strcmp(frame_rate, 'auto') == 1)
+        DESIRED_SECS = 7; % in seconds
+        movw.FrameRate = round(size(frames,6) / DESIRED_SECS);
+    else
+        movw.FrameRate = frame_rate;
+    end
+    open(movw);    
+    for model_i=1:size(frames,2)
+        for frame_i=1:size(frames, 6)
+            I = squeeze(frames(i,model_i,:, :, :, frame_i));
+            I = (I - min(I(:))) / (max(I(:)) - min(I(:)));
+            writeVideo(movw, I);
+            if (frame_i == 1)
+                for ii=1:8
+                    writeVideo(movw, I); % repeat init frame
+                end
+            end
+        end
+        for j=1:20
+            writeVideo(movw, I); % filler frames
+        end
+    end
+    close(movw);
+    fprintf('Saving movie to: %s\n', mov_outpath);
+end
+
+    
 end
