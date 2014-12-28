@@ -29,21 +29,22 @@
 
 \begin{abstract}
 
-Automated handwriting detection remains an interesting yet challenging problem in the Vision field. Due to the curve-like nature of handwriting, it seems natural to consider approaches that directly model these curves. This project will investigate a particular approach from Hinton et. al \cite{Hinton92adaptiveelastic} that uses an elastic model to recognize digits. Each digit class is represented by a cubic spline in an "ideal" configuration. To classify a test image, an iterative algorithm performs an elastic match between the test image and each digit model - the digit class with the best score wins. In addition, this project will investigate several extensions to the original model. Validation will be performed against the publically-available handwritten digit dataset, MNIST \cite{mnist}.
+Automated handwriting detection remains an interesting yet challenging problem in the Vision field. Due to the curve-like nature of handwriting, it seems natural to consider approaches that directly model these curves. This project will investigate a particular approach from Hinton et. al \cite{Hinton92adaptiveelastic} that uses an elastic model to recognize digits. Each digit class is represented by a cubic spline. To classify a test image, an iterative algorithm performs an elastic match between the test image and each digit model - the digit class with the best score wins. Validation is performed against the handwritten digit dataset, MNIST \cite{mnist}.
 
 \end{abstract}
 
-\keywords{Digit Recognition, Cubic Spline, Elastic Match, Expectation- Maximization}
+\keywords{Digit Recognition, Cubic Spline, Elastic Match, Deformable Template}
 
 \section{Introduction}
 
-Automated handwriting detection is an interesting yet challenging problem in the Vision field. Traditional approaches to detection problems, such as template-based matching, are ineffective in this domain due to nature of writing style variability: different people will write the same character in drastically different ways. Due to the curve-like nature of handwriting, however, it seems natural to consider approaches that attempt to model these curves.  
+Automated handwriting detection is an interesting yet challenging problem in the Vision field. Traditional approaches to detection problems, such as template-based matching, are ineffective in this domain due to writing style variability: different people will write the same character in drastically different ways. Due to the curve-like nature of handwriting, however, it seems natural to consider approaches that attempt to model these curves.  
 \\
 \\
-On the one hand, pure template matching involves finding digit instances close to data and involves having a large repository of instances of each digit. This entails a large number of matching steps if the images are not accurately normalized. One solution is to use affine transformations, which significantly reduces this number. On the other hand, using elastic models increases the complexity of matching, while the number of matches decreases. In this project, we use elastic models based on splines, containing a few parameters which captures many of the variations of a given digit. 
+On the one hand, pure template matching is simple but brittle. To remain robust to variation, one must acquiare a large number of instances of each digit, resulting in many required image comparisons at test time.
+On the other hand, using deformable templates increases the complexity of matching, but the number of matches decreases. In this project, we use deformable models based on cubic splines, containing a few parameters which captures many of the variations of a given digit. 
 \\
 \\
-We investigate a particular approach from Hinton et. al \cite{Hinton92adaptiveelastic} that uses an elastic model to recognize digits. Each digit class is represented by a cubic spline with a particular "home" configuration. To classify a test image, an iterative algorithm is used that performs an elastic match between the test image and each digit class - the digit class with the best score wins, as shown in Fig. \ref{fig:bestFitEg}. To remain invariant against factors such as translation, rotation, and scaling, all matching is performed in a canonical "object frame". In addition, we investigate a few extensions to the original model. Validation is performed against the publically-available handwritten digit dataset, MNIST \cite{mnist}.
+We investigate a particular approach from Hinton et. al \cite{Hinton92adaptiveelastic} that uses an elastic model to recognize digits. Each digit class is represented by a cubic b-spline with a particular ``home'' configuration. To classify a test image, an iterative algorithm  performs an elastic match between the test image and each digit class - the digit class with the best score wins. See Figure \ref{fig:bestFitEg} for an illustration of the classification approach. To remain invariant against factors such as translation, rotation, and scaling, all matching is performed in a canonical ``object frame''. Validation is performed against the publically-available handwritten digit dataset, MNIST \cite{mnist}.
 
 \begin{figure}
 \centering
