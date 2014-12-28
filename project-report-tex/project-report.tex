@@ -149,18 +149,20 @@ See Figure \ref{fig:mnist_imgs} for several example images.
 
 Following the authors of \cite{Hinton92adaptiveelastic}, we first apply several basic preprocessing steps to the input digit images to obtain binary, thinned images.
 First, the images are thresholded using Otsu's method, yielding a binary image with (hopefully) spurious details removed.
+Next, an image skeletonization is performed on the thresholded image to yield a thinned digit image that captures the predominant shape details.
 See Figure \ref{fig:mnist_imgs} to see the results of the preprocessing operations.
 
 \subsection{Evaluation}
 
 First, we determined the optimal setting for the $\alpha$ parameter (see Section \ref{sec:classify}) by doing a grid-search on a separate validation set of 50 images.
-For the other parameters ($N_0$, $\pi_N$), we elected to use the values that the authors suggest in \cite{Hinton92adaptiveelastic}, as we found that they worked well in practice.
+For the other parameters ($N_0$, $\pi_N$), we opted to use the values that the authors suggest in \cite{Hinton92adaptiveelastic}, as we found that they worked well in practice.
 
 We evaluated the digit classification algorithm on 150 images from MNIST.
 Results are found in Table \ref{tab:results}.
-In our simple MATLAB implementation, it takes roughly 110 seconds to classify an image.
-Much of the time is spent solving a least-squares problem with a general-purpose solver\footnote{CVX: http://cvxr.com/cvx/}.
-
+In our MATLAB implementation, it takes roughly 110 seconds to classify an image.
+There are many opportunities to optimize the code.
+For instance, much of the time is spent solving a least-squares problem with a general-purpose solver\footnote{CVX: http://cvxr.com/cvx/}.
+By analytically reducing the least-squares problem to a linear system, one would gain substantial performance gain.
 
 \begin{figure*}
 \centering
@@ -184,27 +186,24 @@ Much of the time is spent solving a least-squares problem with a general-purpose
 \label{tab:results}
 \end{table}
 
-
-
 \subsection{Discussion}
 
-Model-based top-down approaches such as the one presented here leads to easily interpretable results.
+Model-based approaches such as the one presented here leads to easily interpretable results.
 After fitting, the deformable digit spline models provide a powerful interpretation of the input image.
-However, this power comes at a cost - the iterative algorithm is a very expensive online process.
-Further, the recognition rates listed in this report are fairly lack-luster, considering that performance on the MNIST dataset has effectively saturated at near-perfect accuracy.
+However, this comes at a cost - the iterative algorithm is a very expensive online process.
+Further, the recognition rates listed in this report are fairly lack-luster, especially considering that performance on the MNIST dataset has effectively saturated at near-perfect accuracy.
 For instance, Ciresan et. al. reports an error rate as low as 0.23\% on MNIST by utilizing a deep neural network \cite{ciresan}.
 
 Yet, it is worth noting the attractive qualities of model-based methods such as the one explored here.  
 The iterative fitting process seeks to best explain the input image with respect to a set of known digit spline models.
 As a result, the algorithm richly describes the image in a principled manner.
 On the other hand, approaches such as \cite{ciresan} train classifiers with the explicit goal of classification.
-Often, such approaches treat the problem purely as a pattern recognition problem, and don't care to ``explain'' the images.
-Thus, in a philosophical sense it is difficult to compare the two approaches, as the goals are inherently different.
+Often, such approaches treat the problem purely as one of pattern recognition, and don't care to ``explain'' the images.
 
 \section{Conclusion}
 
-We have investigated a model-based approach to digit recognition that iteratively fits deformable spline models to input digit images, yielding easily interpretable results.
-
+We have investigated a model-based approach to digit recognition that fits deformable spline models to input digit images, yielding easily interpretable results.
+Validation was performed on a subset of the MNIST dataset.
 
  \bibliography{project-bibfile}
 \bibliographystyle{plain}
