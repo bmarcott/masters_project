@@ -1,0 +1,49 @@
+======================
+==== Introduction ====
+======================
+
+This is a Matlab implementation of the handwritten digit recognition
+algorithm from:
+
+    Geoffrey E. Hinton, Christopher K. I. Williams, and Michael Revow. Adaptive elastic models for hand-printed character recognition. NIPS 1992.
+
+====================
+==== How to Run ====
+====================
+
+To run a quick demo, first make sure the requirements are fulfilled
+(see below). Then, run the do_classify_digit.m script:
+
+    >> do_classify_digit
+
+This will run the elastic matching algorithm on several MNIST
+images, and output the fitting results to the user in a visual
+form.
+
+======================
+==== Requirements ====
+======================
+
+This has been tested on Matlab R2013a. It should work on later 
+Matlab versions.
+
+This requires the third-party library CVX, a wonderful convex
+optimization suite found here:
+    http://cvxr.com/cvx/
+
+Finally, you will need to download the MNIST handwritten digit
+dataset:
+    http://yann.lecun.com/exdb/mnist/
+
+===============
+==== About ====
+===============
+
+This work was completed for the CS 269 (Visual Modeling) course
+project, taught by Professor Demetri Terzopoulos (Fall 2014).
+
+The group members are:
+    Ansuya Ahluwalia (ansuya@cs.ucla.edu)
+    Eric Kim (ekim@cs.ucla.edu)
+    Nicholas Brett Marcott (bmarcott@ucla.edu)
+
