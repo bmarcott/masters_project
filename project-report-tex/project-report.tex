@@ -58,45 +58,48 @@ We investigate a particular approach from Hinton et. al \cite{Hinton92adaptiveel
 Prominent amount of work in the field of handwriting recognition revolves around neural networks (recurrent, hierarchical, deep forward etc.). Neural networks learn from an image training set for character recognition. Each neural network uniquely learns features that differentiate training images. The target image is classified based on the similarity in properties with the training images. Neural networks are quick to set up but can be inaccurate if unimportant properties are learnt in context to the target data. 
 \\
 \\
-For discrete character recognition, neural networks are trained on weights of template neural nets that generate the character (digit/ alphabet) with highest likelihood. Normalization is used to label the data. However, this system can only be applied to recognition of cursive and unconstrained words if templates of each word are made. This is due to the problem of character segmentation that exists in cursive and unconstrained handwriting. To handle unconstrained words, most researchers use Time-Delay Neural Networks (TDNN's) to generate labels for segments of data \cite{mantas1986overview}. In \cite{tddnn}, authors use a time-delay neural network to estimate a posteriori probabilities for characters in a word. A hidden markov model segments the word in a way that optimizes the global word score, using a dictionary in the process.
+For discrete character recognition, neural networks are trained on weights of template neural nets that generate the character (digit/ alphabet) with highest likelihood. However, this system can only be applied to recognition of cursive and unconstrained words if templates of each word are made. This is due to the problem of character segmentation that exists in cursive and unconstrained handwriting. To handle unconstrained words, Time-Delay Neural Networks (TDNN's) can be used to generate labels for segments of data \cite{mantas1986overview}. In \cite{tddnn}, authors use a time-delay neural network to estimate a posteriori probabilities for characters in a word. A hidden markov model segments the word in a way that optimizes the global word score, using a dictionary in the process.
 \\
 \\
 A lot of research has been in developing advanced algorithms for handwriting recognition using neural networks and hidden markov models. In \cite{LeCun:1989:BAH:1351079.1351090}, authors use backpropagation to recognize handwritten zip codes. Researchers have also developed novel, biologically motivated approaches to classify handwritten characters. Dystal ( Dynamically Stable Associative Learning) is one such neural network algorithm \cite{Blackwell1992655}. In \cite{97912}, researchers use neocognitron, a neural network model for deformation-invariant visual pattern recognition, for handwritten alphanumeric character recognition. \cite{541414} incorporate HMM's into a complex stochastic language model for handwriting recognition. The pattern elements of the handwriting model are subcharacter stroke types modeled by HMMs. These HMMs are concatenated to form letter models, which are further embedded in a stochastic language model. \cite{Bengio95lerec:a} use a neural network/ HMM hybrid model for on-line handwriting recognition. They also employ EM algorithm in their approach. They perform a word-level normalization by fitting a model of the word structure using the EM algorithm. 
 \\
 \\
 Deformable models are efficient for characterizing handwritten digits since they have
-relatively few parameters and are able to capture many variations in digit instances. We investigate the system described in \cite{Hinton92adaptiveelastic} that uses learned digit models consisting of splines whose shape is governed by a small number of control points. This method uses a single model for each digit class. As as extension to their work in \cite{Hinton92adaptiveelastic}, authors developed multi-models for each digit class, with little computational overhead, to better characterize the variations in the instances of each digit \cite{revow1993using}. 
+relatively few parameters and are able to capture many variations in digit instances. We investigate the system described in \cite{Hinton92adaptiveelastic} that uses learned digit models consisting of splines whose shape is governed by a small number of control points. This method uses a single model for each digit class. As as extension to their work in \cite{Hinton92adaptiveelastic}, Revow et. al. developed mixture-models for each digit class, with little computational overhead, to better characterize the variations in the instances of each digit \cite{revow1993using}. 
 
 
 \section{Methodology}
 \label{sec:methodology}
 
 In this section we discuss the details for performing digit recognition.
-As these digits are created by a series of strokes, or curves, a cubic B-spline curve is a natural representation to model the curves' "ideal" shape. As a summary of the fitting process, a model representing each digit is fit to an input image. The image is then classified as the digit represented by the model that fits best to the image without excessive deformation.
+As these digits are created by a series of strokes, or curves, a cubic B-spline curve is a natural representation to model the curves' ``ideal'' shape. As a summary of the fitting process, a model representing each digit is fit to an input image. The image is then classified as the digit model that fits best to the image.
 
-\subsection{Digit model}
-In this project, cubic B-spline models are defined for only two digit classes, twos and threes. Both of these models are defined using eight control points, hence each segment of the curve is affected by only four of the control points. Along the curve, there are evenly spaced "ink generators" or "beads," which are modeled by bi-variate Gaussian distributions. These beads are used to calculate the probability of an inked pixel being generated by a particular bead. In this way inked pixels are much more likely to be generated by a neighboring bead, but are still affected by the other beads. 
+\subsection{Digit Model}
+In this project, cubic B-spline models are defined for only two digit classes, twos and threes. Both of these models are defined using eight control points, hence each segment of the curve is affected by only four of the control points. Along the curve, there are evenly spaced ``ink generators'' or ``beads,'' which are modeled by bi-variate Gaussian distributions. These beads are used to calculate the probability of an inked pixel being generated by a particular bead. In this way inked pixels are much more likely to be generated by a neighboring bead, but are still affected by the other beads. 
 \\
 \\
-\\
-Similar to other inverse problems, the objective function is a balance between some regularization term and a data fit term. In this project, the regularization term is a penalty for how much the b-spline deviates from its original model position. The data fit term is calculated based on each inked pixels probability of being generated by the gaussians along the spine of the curve. The equations are as below:
+Similar to other inverse problems, the objective function is a balance between a regularization term and a data fit term. In this project, the regularization term is a penalty for how much the b-spline deviates from its original model position. The data fit term is calculated based on each inked pixels probability of being generated by the gaussians along the spine of the curve. 
 
+The energy function that we wish to minimize is given as:
 \begin{equation*}
 \numberthis \label{eq:E_total}
     E_{tot} = E_{def} + E_{fit}
 \end{equation*}
 
+$E_{def}$ is the cost of a model shape deviating from a known starting shape, and is given as the sum of squared differences of the control point locations before and after deformation:
 $$ E_{def} =  \sum_{CP}{(\textbf{x}_{home} - \textbf{x}_{new})^2}$$ 
-This is the sum of the squared differences of the control point positions before and after deformation.
 
+$E_{fit}$ is a term that consists of the ``pulling'' forces that each inked pixel exerts on the spline:
 $$ E_{fit} = -\frac{N_0}{N_B}\sum_{i \in inked}^{N_B}{log(f(y_i))}  $$
-\\
-Where $N_0$ is a "standard" number of pixels and $N_B$ is the number of inked pixels.
+
+Where $N_0$ is a ``standard'' number of pixels, and $N_B$ is the number of inked pixels.
+By placing equally-spaced Gaussian ``beads'' along the spline, $f(y)$ is expressed as:
 
 $$ f(y) =  \frac{\pi_n}{A} + \frac{1-\pi_n}{B}\sum_{G}{f_g(y)}$$ 
-\\
-Where $f_g(y)$ is the value of a pixel located at position y under a bi-variate Gaussian distribution g, and $\pi_n$ is the relative weight a pixel has by being generated randomly from uniform noise versus by the ink generators. In this way, the equation for $f(y)$ is a mixture model that accounts for a pixel being generated either by uniform noise or by an ink generator.\\
 
+Where $f_g(y)$ is the likelihood of a pixel located at position y under a bi-variate Gaussian distribution g, and $\pi_n$ is the relative weight a pixel has by being generated randomly from uniform noise versus by the ink generators. 
+There is one Gaussian distribution for each ``bead'' along the spline - the mean is the bead location, and the variance is defined according to an annealing schedule.
+The equation for $f(y)$ is a mixture model that accounts for a pixel being generated either by uniform noise or by an ink generator.
 
 \subsection{EM algorithm}
 To minimize the objective function, the total energy, an EM algorithm is used. In the E step of the algorithm, the "responsibilities" of each of the beads is calculated and held fixed for the M step. These responsibilities are the probability of a pixel being generated by a single ink generator normalized by the total probability of being generated. 
