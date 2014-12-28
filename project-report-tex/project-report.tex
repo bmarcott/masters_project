@@ -123,7 +123,7 @@ In addition to the spline parameters of the fit, the algorithm also outputs the 
 \end{equation*}    
 
 As $E_{tot}$ is a measure of how well a digit model fits to the input image, one natural classification method is to simply output the label of the best-fitting model.
-In other words, the classificaton is performed as:
+In other words, the classification is performed as:
 \begin{equation*}
 \numberthis \label{eq:class1}
 \text{label} = \argmin_{m \in Models}{E_{tot}^{(m)}}
@@ -191,7 +191,7 @@ By analytically reducing the least-squares problem to a linear system, one would
 Model-based approaches such as the one presented here leads to easily interpretable results.
 After fitting, the deformable digit spline models provide a powerful interpretation of the input image.
 However, this comes at a cost - the iterative algorithm is a very expensive online process.
-Further, the recognition rates listed in this report are fairly lack-luster, especially considering that performance on the MNIST dataset has effectively saturated at near-perfect accuracy.
+Further, the recognition rates listed in this report are fairly lackluster, especially considering that performance on the MNIST dataset has effectively saturated at near-perfect accuracy.
 For instance, Ciresan et. al. reports an error rate as low as 0.23\% on MNIST by utilizing a deep neural network \cite{ciresan}.
 
 Yet, it is worth noting the attractive qualities of model-based methods such as the one explored here.  
