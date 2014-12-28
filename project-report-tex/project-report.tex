@@ -111,6 +111,32 @@ The maximization contains two steps. The first step maximizes the total energy w
 \\
 A fixed annealing schedule is used for the EM algorithm. At each stage of the annealing schedule, the variance of each of the ink generators is decreased, while the number of beads is increased to account for finer character detail. This fitting stops either when the total energy has not changed by a set threshold, or when all the iterations are complete. The process may converge to local maximum based on initial conditions.
 
+Several examples of converged fits can be seen in Figures \ref{fig:good_fit_2}, \ref{fig:good_fit_3}, \ref{fig:bad_fit_3}.
+
+\begin{figure*}
+\centering
+\includegraphics[width=.7\linewidth]{figs/good_fit_2.png}
+\caption{Fitting a ``two'' model to an image.}
+\label{fig:good_fit_2}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\includegraphics[width=.7\linewidth]{figs/good_fit_3.png}
+\caption{Fitting a ``three'' model to an image.}
+\label{fig:good_fit_3}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\includegraphics[width=.7\linewidth]{figs/bad_fit_3.png}
+\caption{An instance of a poor fit of a ``three'' model to the image.
+Here, it is likely that the matching converged to a bad local minimum.
+}
+\label{fig:bad_fit_3}
+\end{figure*}
+
+
 \subsection{Digit Classification}
 \label{sec:classify}
 
@@ -155,7 +181,7 @@ See Figure \ref{fig:mnist_imgs} to see the results of the preprocessing operatio
 \subsection{Evaluation}
 
 First, we determined the optimal setting for the $\alpha$ parameter (see Section \ref{sec:classify}) by doing a grid-search on a separate validation set of 50 images.
-For the other parameters ($N_0$, $\pi_N$), we opted to use the values that the authors suggest in \cite{Hinton92adaptiveelastic}, as we found that they worked well in practice.
+For the other parameters ($N_0$, $\pi_N$), as well as the annealing schedule, we opted to use the settings that the authors suggest in \cite{Hinton92adaptiveelastic}, as we found that they worked well in practice.
 
 We evaluated the digit classification algorithm on 150 images from MNIST.
 Results are found in Table \ref{tab:results}.
